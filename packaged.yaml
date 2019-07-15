@@ -1,0 +1,107 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Serverless Application Model - Python Application
+Globals:
+  Function:
+    Environment:
+      Variables:
+        APP_NAME:
+          Ref: AppName
+        APP_VERSION:
+          Ref: AppVersion
+    Runtime: python3.7
+    Timeout: 3
+Outputs:
+  ApplicationApi:
+    Description: API Gateway endpoint URL for the application
+    Value:
+      Fn::Sub: https://${ApplicationApi}.execute-api.${AWS::Region}.amazonaws.com/${Environment}/
+Parameters:
+  AppName:
+    Default: sam-dbcc-converter
+    Description: Name of the application
+    Type: String
+  AppVersion:
+    Default: v1
+    Description: Version of the application
+    Type: String
+  Environment:
+    Default: dev
+    Description: Name of the environment to deploy to
+    Type: String
+Resources:
+  AppVersionFunction:
+    Properties:
+      AutoPublishAlias: live
+      CodeUri: s3://snowco-sam-eu-west-1/cbc739bf0022b02bd8b46e804c3fd177
+      DeploymentPreference:
+        Hooks:
+          PostTraffic:
+            Ref: AppVersionPostTrafficHookFunction
+          PreTraffic:
+            Ref: AppVersionPreTrafficHookFunction
+        Type: AllAtOnce
+      Events:
+        Version:
+          Properties:
+            Method: get
+            Path: /version
+            RestApiId:
+              Ref: ApplicationApi
+          Type: Api
+      Handler: app.get_version
+    Type: AWS::Serverless::Function
+  AppVersionPostTrafficHookFunction:
+    Properties:
+      CodeUri: s3://snowco-sam-eu-west-1/bfde0d1e211bfb28747bc10d2001a922
+      DeploymentPreference:
+        Enabled: false
+      FunctionName: CodeDeployHook_postTrafficHook
+      Handler: test_handler.test_version_post_traffic
+      Policies:
+      - Statement:
+        - Action:
+          - codedeploy:PutLifecycleEventHookExecutionStatus
+          Effect: Allow
+          Resource: '*'
+        Version: '2012-10-17'
+      - Statement:
+        - Action:
+          - lambda:InvokeFunction
+          Effect: Allow
+          Resource:
+            Ref: AppVersionFunction.Version
+        Version: '2012-10-17'
+    Type: AWS::Serverless::Function
+  AppVersionPreTrafficHookFunction:
+    Properties:
+      CodeUri: s3://snowco-sam-eu-west-1/cbc739bf0022b02bd8b46e804c3fd177
+      DeploymentPreference:
+        Enabled: false
+      Environment:
+        Variables:
+          CurrentFunctionVersion:
+            Ref: AppVersionFunction.Version
+      FunctionName: CodeDeployHook_preTrafficHook
+      Handler: test_handler.test_version_pre_traffic
+      Policies:
+      - Statement:
+        - Action:
+          - codedeploy:PutLifecycleEventHookExecutionStatus
+          Effect: Allow
+          Resource: '*'
+        Version: '2012-10-17'
+      - Statement:
+        - Action:
+          - lambda:InvokeFunction
+          Effect: Allow
+          Resource:
+            Ref: AppVersionFunction.Version
+        Version: '2012-10-17'
+    Type: AWS::Serverless::Function
+  ApplicationApi:
+    Properties:
+      Name: ApplicationApi
+      StageName:
+        Ref: Environment
+    Type: AWS::Serverless::Api
+Transform: AWS::Serverless-2016-10-31

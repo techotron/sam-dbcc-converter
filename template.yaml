@@ -1,0 +1,108 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Description: Serverless Application Model - Python Application
+
+Transform: AWS::Serverless-2016-10-31
+
+Parameters:
+  Environment:
+    Description: Name of the environment to deploy to
+    Default: dev
+    Type: String
+
+  AppVersion:
+    Description: Version of the application
+    Default: v1
+    Type: String
+
+  AppName:
+    Description: Name of the application
+    Default: sam-dbcc-converter
+    Type: String
+
+Globals:
+  Function:
+    Timeout: 3
+    Runtime: python3.7
+    Environment:
+      Variables:
+        APP_VERSION: !Ref AppVersion
+        APP_NAME: !Ref AppName
+
+Resources:
+  ApplicationApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: ApplicationApi
+      StageName: !Ref Environment
+
+  AppVersionFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: version/
+      Handler: app.get_version
+      AutoPublishAlias: live
+      DeploymentPreference:
+        Type: AllAtOnce
+        Hooks:
+          PreTraffic: !Ref AppVersionPreTrafficHookFunction
+          PostTraffic: !Ref AppVersionPostTrafficHookFunction
+      Events:
+        Version:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ApplicationApi
+            Path: /version
+            Method: get
+
+  AppVersionPreTrafficHookFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: version/
+      Handler: test_handler.test_version_pre_traffic
+      FunctionName: 'CodeDeployHook_preTrafficHook'
+      DeploymentPreference:
+        Enabled: false
+      Policies:
+        - Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Action:
+                - codedeploy:PutLifecycleEventHookExecutionStatus
+              Resource: "*"
+        - Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Action:
+                - lambda:InvokeFunction
+              Resource: !Ref AppVersionFunction.Version
+      Environment:
+        Variables:
+          CurrentFunctionVersion: !Ref AppVersionFunction.Version
+
+  AppVersionPostTrafficHookFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: version/
+      Handler: test_handler.test_version_post_traffic
+      FunctionName: 'CodeDeployHook_postTrafficHook'
+      DeploymentPreference:
+        Enabled: false
+      Policies:
+        - Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Action:
+                - codedeploy:PutLifecycleEventHookExecutionStatus
+              Resource: "*"
+        - Version: "2012-10-17"
+          Statement:
+            - Effect: Allow
+              Action:
+                - lambda:InvokeFunction
+              Resource: !Ref AppVersionFunction.Version
+
+Outputs:
+  ApplicationApi:
+    Description: "API Gateway endpoint URL for the application"
+    Value: !Sub "https://${ApplicationApi}.execute-api.${AWS::Region}.amazonaws.com/${Environment}/"
