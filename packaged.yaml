@@ -8,6 +8,8 @@ Globals:
           Ref: AppName
         APP_VERSION:
           Ref: AppVersion
+        DDB_TABLE:
+          Fn::Sub: ${AppName}-${Environment}
     Runtime: python3.7
     Timeout: 3
 Outputs:
@@ -15,6 +17,40 @@ Outputs:
     Description: API Gateway endpoint URL for the application
     Value:
       Fn::Sub: https://${ApplicationApi}.execute-api.${AWS::Region}.amazonaws.com/${Environment}/
+  dbcConverterBucket:
+    Description: S3 Bucketname for dbc converter
+    Export:
+      Name: dbcConverterBucket
+    Value:
+      Ref: dbcConverterBucket
+  dbcConverterQueue:
+    Description: SQS Queue for DBC Converter
+    Export:
+      Name: dbcConverterQueue
+    Value:
+      Ref: dbcConverterQueue
+  dbcConverterQueueArn:
+    Description: ARN of SQS Queue for DBC Converter
+    Export:
+      Name: dbcConverterQueue-ARN
+    Value:
+      Fn::GetAtt:
+      - dbcConverterQueue
+      - Arn
+  dbccDynamoDbStreamArn:
+    Description: DynamoDB Stream ARN
+    Export:
+      Name: dbccDynamoDb-streamarn
+    Value:
+      Fn::GetAtt:
+      - dbccDynamoDb
+      - StreamArn
+  dbccDynamoDbTable:
+    Description: DynamoDB Table Name
+    Export:
+      Name: dbccDynamoDb
+    Value:
+      Ref: dbccDynamoDb
 Parameters:
   AppName:
     Default: sam-dbcc-converter
@@ -28,11 +64,44 @@ Parameters:
     Default: dev
     Description: Name of the environment to deploy to
     Type: String
+  ReceiptRuleName:
+    Default: mail-to-s3
+    Type: String
+  ReceiptRuleSetName:
+    Default: mail-to-s3
+    Type: String
 Resources:
+  AppProcessorFunction:
+    Properties:
+      AutoPublishAlias: live
+      CodeUri: s3://snowco-sam-eu-west-1/c000d7d18a1bc2b682ea0495a1010afd
+      DeploymentPreference:
+        Type: AllAtOnce
+      Events:
+        SqsEvent:
+          Properties:
+            BatchSize: 1
+            Queue:
+              Fn::GetAtt:
+              - dbcConverterQueue
+              - Arn
+          Type: SQS
+      Handler: app.main
+      Policies:
+      - Statement:
+        - Action:
+          - dynamodb:*
+          Effect: Allow
+          Resource:
+            Fn::GetAtt:
+            - dbccDynamoDb
+            - Arn
+        Version: '2012-10-17'
+    Type: AWS::Serverless::Function
   AppVersionFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/cbc739bf0022b02bd8b46e804c3fd177
+      CodeUri: s3://snowco-sam-eu-west-1/bec05e06be946f69d4b6754ae980369b
       DeploymentPreference:
         Hooks:
           PostTraffic:
@@ -52,7 +121,7 @@ Resources:
     Type: AWS::Serverless::Function
   AppVersionPostTrafficHookFunction:
     Properties:
-      CodeUri: s3://snowco-sam-eu-west-1/bfde0d1e211bfb28747bc10d2001a922
+      CodeUri: s3://snowco-sam-eu-west-1/8a08880dc6cae4040d2277ba6fa004d2
       DeploymentPreference:
         Enabled: false
       FunctionName: CodeDeployHook_postTrafficHook
@@ -74,7 +143,7 @@ Resources:
     Type: AWS::Serverless::Function
   AppVersionPreTrafficHookFunction:
     Properties:
-      CodeUri: s3://snowco-sam-eu-west-1/cbc739bf0022b02bd8b46e804c3fd177
+      CodeUri: s3://snowco-sam-eu-west-1/8a08880dc6cae4040d2277ba6fa004d2
       DeploymentPreference:
         Enabled: false
       Environment:
@@ -104,4 +173,135 @@ Resources:
       StageName:
         Ref: Environment
     Type: AWS::Serverless::Api
+  ReceiptRuleSet:
+    Properties:
+      RuleSetName:
+        Ref: ReceiptRuleSetName
+    Type: AWS::SES::ReceiptRuleSet
+  StreamProcessorFunction:
+    Properties:
+      AutoPublishAlias: live
+      CodeUri: s3://snowco-sam-eu-west-1/24d082a8e8881e26733ff1a65f5bf536
+      DeploymentPreference:
+        Type: AllAtOnce
+      Events:
+        DdbEvent:
+          Properties:
+            BatchSize: 1
+            Enabled: true
+            StartingPosition: LATEST
+            Stream:
+              Fn::GetAtt:
+              - dbccDynamoDb
+              - StreamArn
+          Type: DynamoDB
+      Handler: app.main
+      Policies:
+      - Statement:
+        - Action:
+          - dynamodb:*
+          Effect: Allow
+          Resource:
+            Fn::GetAtt:
+            - dbccDynamoDb
+            - Arn
+        - Action:
+          - dynamodb:*
+          Effect: Allow
+          Resource:
+            Fn::GetAtt:
+            - dbccDynamoDb
+            - StreamArn
+        Version: '2012-10-17'
+    Type: AWS::Serverless::Function
+  dbcConverterBucket:
+    Properties:
+      AccessControl: Private
+      BucketName:
+        Fn::Sub: ${AppName}-${Environment}-${AWS::Region}
+      NotificationConfiguration:
+        QueueConfigurations:
+        - Event: s3:ObjectCreated:*
+          Filter:
+            S3Key:
+              Rules:
+              - Name: prefix
+                Value: in
+          Queue:
+            Fn::GetAtt:
+            - dbcConverterQueue
+            - Arn
+    Type: AWS::S3::Bucket
+  dbcConverterBucketPolicy:
+    Properties:
+      Bucket:
+        Ref: dbcConverterBucket
+      PolicyDocument:
+        Statement:
+        - Action:
+          - s3:PutObject
+          Effect: Allow
+          Principal:
+            Service:
+            - ses.amazonaws.com
+          Resource:
+            Fn::Join:
+            - ''
+            - - 'arn:aws:s3:::'
+              - Ref: dbcConverterBucket
+              - /*
+    Type: AWS::S3::BucketPolicy
+  dbcConverterQueue:
+    Properties:
+      QueueName: dbcConverterQueue
+    Type: AWS::SQS::Queue
+  dbcConverterQueuePolicy:
+    Properties:
+      PolicyDocument:
+        Statement:
+        - Action:
+          - sqs:*
+          Effect: Allow
+          Principal:
+            Service:
+            - s3.amazonaws.com
+          Resource:
+          - Fn::GetAtt:
+            - dbcConverterQueue
+            - Arn
+      Queues:
+      - Ref: dbcConverterQueue
+    Type: AWS::SQS::QueuePolicy
+  dbccDynamoDb:
+    Properties:
+      AttributeDefinitions:
+      - AttributeName: messageId
+        AttributeType: S
+      KeySchema:
+      - AttributeName: messageId
+        KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 10
+        WriteCapacityUnits: 10
+      StreamSpecification:
+        StreamViewType: NEW_IMAGE
+      TableName:
+        Fn::Sub: ${AppName}-${Environment}
+    Type: AWS::DynamoDB::Table
+  mailToS3Rule:
+    DependsOn: ReceiptRuleSet
+    Properties:
+      Rule:
+        Actions:
+        - S3Action:
+            BucketName:
+              Ref: dbcConverterBucket
+            ObjectKeyPrefix: in
+        Enabled: true
+        Name:
+          Ref: ReceiptRuleName
+        ScanEnabled: true
+      RuleSetName:
+        Ref: ReceiptRuleSetName
+    Type: AWS::SES::ReceiptRule
 Transform: AWS::Serverless-2016-10-31

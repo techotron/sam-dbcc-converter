@@ -1,0 +1,954 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: Tacograph AEBS ACC BMU EBS EVCU ELFA_System
+
+
+BO_ 2348810279 TSC1_EVCU: 8 EVCU
+ SG_ MsgChecksum_SPN4207 : 60|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ MsgCounter_SPN4206 : 56|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ EngReqTqHighRes_SPN4191 : 40|4@1+ (1,0) [0|0.875] "%" Vector__XXX
+ SG_ TSC1CtrlPurpose_SPN3350 : 35|5@1+ (1,0) [0|31] "" Vector__XXX
+ SG_ TSC1TransRate_SPN3349 : 32|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ EngReqTq_TqLim_SPN518 : 24|8@1+ (1,-125) [-125|125] "%" Vector__XXX
+ SG_ EngReqSpd_SpdLim_SPN898 : 8|16@1+ (0.125,0) [0|8191.875] "Umin" Vector__XXX
+ SG_ OverrideCtrlModePrio_SPN897 : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EngReqSpdCtrlCond_SPN696 : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EngOverrideCtrlMode_SPN695 : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 2566708314 CCVS3_ELFA: 8 ELFA_System
+ SG_ CruiseCtrlSpeed_SPN7319 : 48|16@1+ (0.00390625,0) [0|250.996] "km/h" Vector__XXX
+ SG_ CruiseCtrlSetSpeed_SPN6809 : 32|16@1+ (0.00390625,0) [0|250.996] "km/h" Vector__XXX
+ SG_ PrdctvCrsCtrlStSpeedOffsetStatus : 5|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ AEBSReadinessState_SPN6208 : 24|2@1+ (1,0) [0|3] ""  AEBS
+ SG_ SrcAddrssOfCntrllngDvcFrPsngCrsC : 16|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ SrcAddrssOfCntrllngDvcFrDsblngCr : 8|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ CruiseCtrlSystemCmdState_SPN5807 : 2|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ AdptCrsCtrlReadinessSts_SPN5606 : 0|2@1+ (1,0) [0|3] ""  ACC
+
+BO_ 2349530666 CCVS2: 8 ACC
+ SG_ CruiseCtrlPauseCmd_SPN5605 : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ CruiseCtrlResumeCmd_SPN5604 : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ CruiseCtrlDisableCmd_SPN5603 : 0|2@1+ (1,0) [0|3] ""  ELFA_System
+
+BO_ 2566844762 CCVS1_ELFA: 8 ELFA_System
+ SG_ CruiseCtrlSetSpeed_SPN86 : 40|8@1+ (1,0) [0|250] "kph"  ACC
+ SG_ TwoSpeedAxleSwitch_SPN69 : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ ParkingBrakeSw_SPN70 : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ CruiseCtrlPauseSw_SPN1633 : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ ParkBrakeRelInhReq_SPN3807 : 6|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ WheelBasedVehSpd_SPN84 : 8|16@1+ (0.00390625,0) [0|255] "kph" Vector__XXX
+ SG_ CruiseCtrlAct_SPN595 : 24|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ CruiseCtrlEnSw_SPN596 : 26|2@1+ (1,0) [0|3] ""  ACC
+ SG_ BrakeSw_SPN597 : 28|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ ClutchSw_SPN598 : 30|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ CruiseCtrlSetSw_SPN599 : 32|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ CruiseCtrlCoastSw_SPN600 : 34|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ CruiseCtrlResumeSw_SPN601 : 36|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ CruiseCtrlAccSw_SPN602 : 38|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ PTOGovernorState_SPN976 : 48|5@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ CruiseCtrlStates_SPN527 : 53|3@1+ (1,0) [0|3] ""  ACC
+ SG_ EngIdleIncSw_SPN968 : 56|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EngIdleDecSw_SPN967 : 58|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EngTestModeSw_SPN966 : 60|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EngShutdOverrSw_SPN1237 : 62|2@1+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 2566843738 CCSS_ELFA: 8 ELFA_System
+ SG_ MaxVehicleSpdLimHighRes_SPN6808 : 24|16@1+ (0.00390625,0) [0|250.996] "km/h" Vector__XXX
+ SG_ CruiseCtrlLowSetLimitSpeed_SPN88 : 16|8@1+ (1,0) [0|250] "km/h"  ACC
+ SG_ CruiseCtrlHighSetLimSpd_SPN87 : 8|8@1+ (1,0) [0|250] "km/h" Vector__XXX
+ SG_ MaxVehicleSpeedLimit_SPN74 : 0|8@1+ (1,0) [0|250] "km/h" Vector__XXX
+
+BO_ 2364551072 AEBS1: 8 AEBS
+ SG_ TmeToCollisionWithRelevantObject : 16|8@1+ (0.05,0) [0|12.5] "s" Vector__XXX
+ SG_ BndOffPrbabilityOfRelevantObject : 11|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ RlvntObjctDtctdFrAdvncdEmrgncyBr : 8|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ CollisionWarningLevel_SPN5677 : 4|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ AdvEmrgencyBrakSysState_SPN5676 : 0|4@1+ (1,0) [0|15] ""  ELFA_System
+
+BO_ 2566840815 CFG_EM1_R: 8 ELFA_System
+ SG_ EM1_PctTrqAtPeakTrqPnt5 : 144|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM1_RefRtdrTrq : 128|16@1+ (1,0) [0|64255] "Nm"  EBS
+ SG_ EM1_RtdrSpdAtPeakTrqPnt5 : 112|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM1_PctTrqAtPnt4 : 104|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM1_RtdrSpdAtPnt4 : 88|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM1_PctTrqAtPnt3 : 80|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM1_RtdrSpdAtPnt3 : 64|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM1_PctTrqAtMxSpdPnt2 : 56|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM1_MxRtdrSpdPnt2 : 40|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM1_PctTrqAtIdlePnt1 : 32|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM1_RtdrSpdAtIdlePnt1 : 16|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM1_RtdrCtrlMthd : 8|8@1+ (1,0) [0|250] "steps"  EBS
+ SG_ EM1_RtdrLoctn : 4|4@1+ (1,0) [0|15] ""  EBS
+ SG_ EM1_RtdrType : 0|4@1+ (1,0) [0|15] ""  EBS
+
+BO_ 2566840816 CFG_EM2_R: 8 ELFA_System
+ SG_ EM2_PctTrqAtPeakTrqPnt5 : 144|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM2_RefRtdrTrq : 128|16@1+ (1,0) [0|64255] "Nm"  EBS
+ SG_ EM2_RtdrSpdAtPeakTrqPnt5 : 112|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM2_PctTrqAtPnt4 : 104|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM2_RtdrSpdAtPnt4 : 88|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM2_PctTrqAtPnt3 : 80|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM2_RtdrSpdAtPnt3 : 64|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM2_PctTrqAtMxSpdPnt2 : 56|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM2_MxRtdrSpdPnt2 : 40|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM2_PctTrqAtIdlePnt1 : 32|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM2_RtdrSpdAtIdlePnt1 : 16|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM2_RtdrCtrlMthd : 8|8@1+ (1,0) [0|250] "steps"  EBS
+ SG_ EM2_RtdrLoctn : 4|4@1+ (1,0) [0|15] ""  EBS
+ SG_ EM2_RtdrType : 0|4@1+ (1,0) [0|15] ""  EBS
+
+BO_ 2566841327 CFG_EM1_E: 8 ELFA_System
+ SG_ EM1_SupprtTSC1CtrlPurpGrp4 : 304|8@1+ (1,0) [0|255] ""  EBS
+ SG_ EM1_SupprtTSC1CtrlPurpGrp3 : 296|8@1+ (1,0) [0|255] ""  EBS
+ SG_ EM1_SupprtTSC1CtrlPurpGrp2 : 288|8@1+ (1,0) [0|255] ""  EBS
+ SG_ EM1_SupprtTSC1CtrlPurpGrp1 : 280|8@1+ (1,0) [0|255] ""  EBS
+ SG_ EM1_SupprtVarRateTSC1Msg : 272|8@1+ (1,0) [0|255] ""  EBS
+ SG_ EM1_DfltTrqLmt : 256|16@1+ (1,0) [0|64255] "Nm"  EBS
+ SG_ EM1_MmntOfInertia : 240|16@1+ (0.004,0) [0|257.02] "kg/m²"  EBS
+ SG_ EM1_ExtRngRqSpdCtrlRngUpLim : 224|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM1_RqTrqCtrlRngUpLim : 216|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM1_RqTrqCtrlRngLoLim : 208|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM1_RqSpdCtrlRngUpLim : 200|8@1+ (10,0) [0|2500] "rpm"  EBS
+ SG_ EM1_RqSpdCtrlRngLoLim : 192|8@1+ (10,0) [0|2500] "rpm"  EBS
+ SG_ EM1_MxMomOvrTimeLim : 184|8@1+ (0.1,0) [0|25] "s"  EBS
+ SG_ EM1_MxMomOvrSpdPnt7 : 168|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM1_RefTq : 152|16@1+ (1,0) [0|64255] "Nm"  EBS
+ SG_ EM1_GainEndspdGov : 136|16@1+ (0.00078125,0) [0|50.2] "%/rpm"  EBS
+ SG_ EM1_SpdAtHiIdlePnt6 : 120|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM1_PrctTrqAtPnt5 : 112|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM1_SpdAtPnt5 : 96|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM1_PrctTrqAtPnt4 : 88|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM1_SpdAtPnt4 : 72|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM1_PrctTrqAtPnt3 : 64|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM1_SpdAtPnt3 : 48|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM1_PrctTrqAtPnt2 : 40|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM1_SpdAtPnt2 : 24|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM1_PrctTrqAtIdlePnt1 : 16|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM1_SpdAtIdlePnt1 : 0|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+
+BO_ 2566841328 CFG_EM2_E: 8 ELFA_System
+ SG_ EM2_SupprtTSC1CtrlPurpGrp4 : 304|8@1+ (1,0) [0|255] ""  EBS
+ SG_ EM2_SupprtTSC1CtrlPurpGrp3 : 296|8@1+ (1,0) [0|255] ""  EBS
+ SG_ EM2_SupprtTSC1CtrlPurpGrp2 : 288|8@1+ (1,0) [0|255] ""  EBS
+ SG_ EM2_SupprtTSC1CtrlPurpGrp1 : 280|8@1+ (1,0) [0|255] ""  EBS
+ SG_ EM2_SupprtVarRateTSC1Msg : 272|8@1+ (1,0) [0|255] ""  EBS
+ SG_ EM2_DfltTrqLmt : 256|16@1+ (1,0) [0|64255] "Nm"  EBS
+ SG_ EM2_MmntOfInertia : 240|16@1+ (0.004,0) [0|257.02] "kg/m²"  EBS
+ SG_ EM2_ExtRngRqSpdCtrlRngUpLim : 224|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM2_RqTrqCtrlRngUpLim : 216|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM2_RqTrqCtrlRngLoLim : 208|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM2_RqSpdCtrlRngUpLim : 200|8@1+ (10,0) [0|2500] "rpm"  EBS
+ SG_ EM2_RqSpdCtrlRngLoLim : 192|8@1+ (10,0) [0|2500] "rpm"  EBS
+ SG_ EM2_MxMomOvrTimeLim : 184|8@1+ (0.1,0) [0|25] "s"  EBS
+ SG_ EM2_MxMomOvrSpdPnt7 : 168|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM2_RefTq : 152|16@1+ (1,0) [0|64255] "Nm"  EBS
+ SG_ EM2_GainEndspdGov : 136|16@1+ (0.00078125,0) [0|50.2] "%/rpm"  EBS
+ SG_ EM2_SpdAtHiIdlePnt6 : 120|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM2_PrctTrqAtPnt5 : 112|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM2_SpdAtPnt5 : 96|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM2_PrctTrqAtPnt4 : 88|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM2_SpdAtPnt4 : 72|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM2_PrctTrqAtPnt3 : 64|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM2_SpdAtPnt3 : 48|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM2_PrctTrqAtPnt2 : 40|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM2_SpdAtPnt2 : 24|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM2_PrctTrqAtIdlePnt1 : 16|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM2_SpdAtIdlePnt1 : 0|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+
+BO_ 2566840303 EEC3_EM1: 8 ELFA_System
+ SG_ EM1_EstdEngParaLossPT_SPN2978 : 32|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM1_EngDesrdOpSpdAsymAdj_SPN519 : 24|8@1+ (1,0) [0|250] "%"  EBS
+ SG_ EM1_EngDesrdOpSpd_SPN515 : 8|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM1_NomFrctnPctTrq_SPN514 : 0|8@1+ (1,-125) [-125|125] "%"  EBS
+
+BO_ 2566840304 EEC3_EM2: 8 ELFA_System
+ SG_ EM2_EstdEngParaLossPT_SPN2978 : 32|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM2_EngDesrdOpSpdAsymAdj_SPN519 : 24|8@1+ (1,0) [0|250] "%"  EBS
+ SG_ EM2_EngDesrdOpSpd_SPN515 : 8|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ EM2_NomFrctnPctTrq_SPN514 : 0|8@1+ (1,-125) [-125|125] "%"  EBS
+
+BO_ 2364534539 EMC1_EM1: 8 EBS
+ SG_ EM1_MsgChecksum_SPN4207 : 60|4@1+ (1,0) [0|0] ""  ELFA_System
+ SG_ EM1_MsgCounter_SPN4206 : 56|4@1+ (1,0) [0|0] ""  ELFA_System
+ SG_ EM1_ReqTrqBrk_HiRes_SPN4191 : 52|4@1+ (0.125,0) [0|0.875] "%"  ELFA_System
+ SG_ EM1_ReqTrqAcc_HiRes_SPN4191 : 48|4@1+ (0.125,0) [0|0.875] "%"  ELFA_System
+ SG_ EM1_ReqTrqTrqLimitBrk_SPN518 : 16|8@1+ (1,-125) [-125|125] "%"  ELFA_System
+ SG_ EM1_ReqTrqTrqLimitAcc_SPN518 : 8|8@1+ (1,-125) [-125|125] "%"  ELFA_System
+ SG_ EM1_OvrrdeCtrlModePrioBrk_SPN897 : 6|2@1+ (1,0) [0|0] ""  ELFA_System
+ SG_ EM1_OvrrdeCtrlModePrioAcc_SPN897 : 2|2@1+ (1,0) [0|0] ""  ELFA_System
+ SG_ EM1_OverrideCtrlModeAcc_SPN695 : 0|2@1+ (1,0) [0|0] ""  ELFA_System
+ SG_ EM1_OverrideCtrlModeBrk_SPN695 : 4|2@1+ (1,0) [0|0] ""  ELFA_System
+
+BO_ 2364534795 EMC1_EM2: 8 EBS
+ SG_ EM2_MsgChecksum_SPN4207 : 60|4@1+ (1,0) [0|0] ""  ELFA_System
+ SG_ EM2_MsgCounter_SPN4206 : 56|4@1+ (1,0) [0|0] ""  ELFA_System
+ SG_ EM2_ReqTrqBrk_HiRes_SPN4191 : 52|4@1+ (0.125,0) [0|0.875] "%"  ELFA_System
+ SG_ EM2_ReqTrqAcc_HiRes_SPN4191 : 48|4@1+ (0.125,0) [0|0.875] "%"  ELFA_System
+ SG_ EM2_ReqTrqTrqLimitBrk_SPN518 : 16|8@1+ (1,-125) [-125|125] "%"  ELFA_System
+ SG_ EM2_ReqTrqTrqLimitAcc_SPN518 : 8|8@1+ (1,-125) [-125|125] "%"  ELFA_System
+ SG_ EM2_OverrideCtrlModeBrk_SPN695 : 4|2@1+ (1,0) [0|0] ""  ELFA_System
+ SG_ EM2_OverrideCtrlModeAcc_SPN695 : 0|2@1+ (1,0) [0|0] ""  ELFA_System
+ SG_ EM2_OvrrdeCtrlModePrioBrk_SPN897 : 6|2@1+ (1,0) [0|0] ""  ELFA_System
+ SG_ EM2_OvrrdeCtrlModePrioAcc_SPN897 : 2|2@1+ (1,0) [0|0] ""  ELFA_System
+
+BO_ 2566856943 EMRC1_EM1: 8 ELFA_System
+ SG_ EM1_ActMxAvlblRetPctTrq_SPN1717 : 56|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM1_RetSelectNonEng_SPN1716 : 48|8@1+ (0.4,0) [0|100] "%"  EBS
+ SG_ EM1_SAofCtrlDev_SPN1480 : 40|8@1+ (1,0) [0|255] ""  EBS
+ SG_ EM1_DrvrRtdrPctTrq_SPN512 : 32|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM1_EMotOutShaftSpd : 16|16@1+ (0.25,0) [0|16255.75] "rpm"  EBS
+ SG_ EM1_ActPctTrq_SPN513 : 8|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM1_ActPctTrq_HiRes_SPN4154 : 4|4@1+ (0.125,0) [0|0.875] "%"  EBS
+ SG_ EM1_TrqModeAccBrk_SPN899 : 0|4@1+ (1,0) [0|0] ""  EBS
+
+BO_ 2566856944 EMRC1_EM2: 8 ELFA_System
+ SG_ EM2_ActMxAvlblRetPctTrq_SPN1717 : 56|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM2_RetSelectNonEng_SPN1716 : 48|8@1+ (0.4,0) [0|100] "%"  EBS
+ SG_ EM2_SAofCtrlDev_SPN1480 : 40|8@1+ (1,0) [0|255] ""  EBS
+ SG_ EM2_DrvrRtdrPctTrq_SPN512 : 32|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM2_EMotOutShaftSpd : 16|16@1+ (0.25,0) [0|16255.75] "rpm"  EBS
+ SG_ EM2_ActPctTrq_SPN513 : 8|8@1+ (1,-125) [-125|125] "%"  EBS
+ SG_ EM2_ActPctTrq_HiRes_SPN4154 : 4|4@1+ (0.125,0) [0|0.875] "%"  EBS
+ SG_ EM2_TrqModeAccBrk_SPN899 : 0|4@1+ (1,0) [0|0] ""  EBS
+
+BO_ 2432593706 ACC1: 8 ACC
+ SG_ ForwardCollisionWarning_SPN5022 : 54|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ ACCDistanceAlertSignal_SPN1796 : 52|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ ACCSystemShutoffWarning_SPN1797 : 50|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ ACCTargetDetectedSPN1798 : 48|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ RoadCurvature_SPN1591 : 32|16@1+ (0.0078125,-250) [-250|251.992] "1/km" Vector__XXX
+ SG_ AdptveCruiCtrlSetDistMod_SPN1589 : 27|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ AdaptiveCruiseCtrlMode_SPN1590 : 24|3@1+ (1,0) [0|7] ""  ELFA_System
+ SG_ AdaptiveCruiseCtrlSetSpd_SPN1588 : 16|8@1+ (1,0) [0|120] "km/h" Vector__XXX
+ SG_ DistanceToForwardVehicle_SPN1587 : 8|8@1+ (1,0) [0|250] "m" Vector__XXX
+ SG_ SpeedOfForwardVehicle_SPN1586 : 0|8@1+ (1,0) [0|250] "km/h" Vector__XXX
+
+BO_ 2348814378 TSC1_DR_ACC: 8 ACC
+ SG_ MsgChecksum_SPN4207 : 60|4@1+ (1,0) [0|15] ""  ELFA_System
+ SG_ MsgCounter_SPN4206 : 56|4@1+ (1,0) [0|15] ""  ELFA_System
+ SG_ EngReqTqHighRes_SPN4191 : 40|4@1+ (1,0) [0|0.875] "%"  ELFA_System
+ SG_ TSC1CtrlPurpose_SPN3350 : 35|5@1+ (1,0) [0|31] "" Vector__XXX
+ SG_ TSC1TransRate_SPN3349 : 32|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ EngReqTq_TqLim_SPN518 : 24|8@1+ (1,-125) [-125|125] "%"  ELFA_System
+ SG_ EngReqSpd_SpdLim_SPN898 : 8|16@1+ (0.125,0) [0|8191.875] "Umin" Vector__XXX
+ SG_ OverrideCtrlModePrio_SPN897 : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EngReqSpdCtrlCond_SPN696 : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EngOverrideCtrlMode_SPN695 : 0|2@1+ (1,0) [0|3] ""  ELFA_System
+
+BO_ 2348810400 TSC1_E_AEBS: 8 AEBS
+ SG_ MsgChecksum_SPN4207 : 60|4@1+ (1,0) [0|15] ""  ELFA_System
+ SG_ MsgCounter_SPN4206 : 56|4@1+ (1,0) [0|15] ""  ELFA_System
+ SG_ EngReqTqHighRes_SPN4191 : 40|4@1+ (1,0) [0|0.875] "%"  ELFA_System
+ SG_ TSC1CtrlPurpose_SPN3350 : 35|5@1+ (1,0) [0|31] "" Vector__XXX
+ SG_ TSC1TransRate_SPN3349 : 32|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ EngReqTq_TqLim_SPN518 : 24|8@1+ (1,-125) [-125|125] "%"  ELFA_System
+ SG_ EngReqSpd_SpdLim_SPN898 : 8|16@1+ (0.125,0) [0|8191.875] "Umin" Vector__XXX
+ SG_ OverrideCtrlModePrio_SPN897 : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EngReqSpdCtrlCond_SPN696 : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EngOverrideCtrlMode_SPN695 : 0|2@1+ (1,0) [0|3] ""  ELFA_System
+
+BO_ 2348810282 TSC1_E_ACC: 8 ACC
+ SG_ MsgChecksum_SPN4207 : 60|4@1+ (1,0) [0|15] ""  ELFA_System
+ SG_ MsgCounter_SPN4206 : 56|4@1+ (1,0) [0|15] ""  ELFA_System
+ SG_ EngReqTqHighRes_SPN4191 : 40|4@1+ (1,0) [0|0.875] "%"  ELFA_System
+ SG_ TSC1CtrlPurpose_SPN3350 : 35|5@1+ (1,0) [0|31] "" Vector__XXX
+ SG_ TSC1TransRate_SPN3349 : 32|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ EngReqTq_TqLim_SPN518 : 24|8@1+ (1,-125) [-125|125] "%"  ELFA_System
+ SG_ EngReqSpd_SpdLim_SPN898 : 8|16@1+ (0.125,0) [0|8191.875] "Umin" Vector__XXX
+ SG_ OverrideCtrlModePrio_SPN897 : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EngReqSpdCtrlCond_SPN696 : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EngOverrideCtrlMode_SPN695 : 0|2@1+ (1,0) [0|3] ""  ELFA_System
+
+BO_ 2566885210 ELFA_Sys1: 8 ELFA_System
+ SG_ ES_pchgContactorCommand : 10|2@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MessageCounter : 48|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ CRC : 52|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ DNR_status : 0|4@1+ (1,0) [0|0] ""  EVCU
+ SG_ ES_mainContactorCommand : 8|2@1+ (1,0) [0|0] ""  BMU
+
+BO_ 2566864167 SystemReqFb: 8 EVCU
+ SG_ MessageCounter : 56|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ CRC : 60|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ CoolingTractSysStatus : 8|2@1+ (1,0) [0|0] ""  ELFA_System
+ SG_ OperationModeReq : 0|8@1+ (1,0) [0|0] ""  ELFA_System
+
+BO_ 2566889203 BMU1B: 8 BMU
+ SG_ DischargeCurrentLimit : 0|16@1+ (0.05,-1600) [0|1612.75] "A"  ELFA_System
+ SG_ StateOfCharge : 32|8@1+ (0.4,0) [0|100] "%"  ELFA_System
+ SG_ MessageCounter : 56|4@1+ (1,0) [0|15] ""  ELFA_System
+ SG_ CRC : 60|4@1+ (1,0) [0|15] ""  ELFA_System
+ SG_ ChargeCurrentLimit : 16|16@1+ (0.05,-1600) [-1600|0] "A"  ELFA_System
+
+BO_ 2566889459 BMU1A: 8 BMU
+ SG_ VoltageES_fb : 32|16@1+ (0.05,-1606) [-1606|1606.75] "V"  ELFA_System
+ SG_ ES_mainContactorState : 48|2@1+ (1,0) [0|0] ""  ELFA_System
+ SG_ MessageCounter : 56|4@1+ (1,0) [0|0] ""  ELFA_System
+ SG_ CRC : 60|4@1+ (1,0) [0|0] ""  ELFA_System
+ SG_ VoltES_min : 16|16@1+ (0.05,-1606) [0|1606.75] "V"  ELFA_System
+ SG_ VoltES_max : 0|16@1+ (0.05,-1606) [0|1606.75] "V"  ELFA_System
+
+BO_ 2566864423 Slow_Safety_1: 8 EVCU
+ SG_ MessageCounter : 56|4@1+ (1,0) [0|15] ""  ELFA_System
+ SG_ CRC : 60|4@1+ (1,0) [0|15] ""  ELFA_System
+
+BO_ 2365538087 Fast_Safety_1: 8 EVCU
+ SG_ Retarder : 32|8@1+ (0.4,0) [0|100] "%"  ELFA_System
+ SG_ ParkingBrakeSwitch : 8|2@1+ (1,0) [0|0] ""  ELFA_System
+ SG_ HaltBrakeSwitch : 10|2@1+ (1,0) [0|0] ""  ELFA_System
+ SG_ DNR_selection : 0|4@1+ (1,0) [0|0] ""  ELFA_System
+ SG_ BrakePedalSwitch : 4|2@1+ (1,0) [0|0] ""  ELFA_System
+ SG_ BrakePedalPosition : 40|8@1+ (0.4,0) [0|100] "%"  ELFA_System
+ SG_ MessageCounter : 56|4@1+ (1,0) [0|15] ""  ELFA_System
+ SG_ CRC : 60|4@1+ (1,0) [0|15] ""  ELFA_System
+ SG_ AcceleratorPedalSwitch : 6|2@1+ (1,0) [0|0] ""  ELFA_System
+ SG_ AcceleratorPedalPosition : 48|8@1+ (0.4,0) [0|100] "%"  ELFA_System
+
+BO_ 2565865739 EBC1: 8 EBS
+ SG_ EngAuxShutdSw_SPN970 : 28|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ ASREngCtrlAct_SPN561 : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ ASRBrakeCtrlActive_SPN562 : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ AntiLockBrakingActive_SPN563 : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EBSBrakeSwitch_SPN1121 : 6|2@1+ (1,0) [0|3] ""  ELFA_System
+ SG_ BrakePedalPos_SPN521 : 8|8@1+ (0.4,0) [0|100] "%"  ELFA_System
+ SG_ ABSOffRoadSw_SPN575 : 16|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ ASROffRoadSw_SPN576 : 18|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ ASRHillHolderSw_SPN577 : 20|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ TractCtrlOverrSw_SPN1238 : 22|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ AccInterlSw_SPN972 : 24|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EngDerateSw_SPN971 : 26|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ RemoteAccEnSw_SPN969 : 30|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EngRetarderSel_SPN973 : 32|8@1+ (0.4,0) [0|100] "" Vector__XXX
+ SG_ ABSFullyOperat_SPN1243 : 40|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EBSRedWarnSig_SPN1439 : 42|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ ABSEBSAmberWarnSig_SPN1438 : 44|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ ATCASRInfoSig_SPN1793 : 46|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ SrcAddBrakeCtrl_SPN1481 : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ HaltBrakeSw_SPN2911 : 58|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ TrailerABSStatus_SPN1836 : 60|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ TrMntTrlABSWrnSig_SPN1792 : 62|2@1+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 2348814347 TSC1_DR: 8 EBS
+ SG_ MsgChecksum_SPN4207 : 60|4@1+ (1,0) [0|15] ""  ELFA_System
+ SG_ MsgCounter_SPN4206 : 56|4@1+ (1,0) [0|15] ""  ELFA_System
+ SG_ EngReqTqHighRes_SPN4191 : 40|4@1+ (1,0) [0|0.875] "%"  ELFA_System
+ SG_ TSC1CtrlPurpose_SPN3350 : 35|5@1+ (1,0) [0|31] "" Vector__XXX
+ SG_ TSC1TransRate_SPN3349 : 32|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ EngReqTq_TqLim_SPN518 : 24|8@1+ (1,-125) [-125|125] "%"  ELFA_System
+ SG_ EngReqSpd_SpdLim_SPN898 : 8|16@1+ (0.125,0) [0|8191.875] "Umin" Vector__XXX
+ SG_ OverrideCtrlModePrio_SPN897 : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EngReqSpdCtrlCond_SPN696 : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EngOverrideCtrlMode_SPN695 : 0|2@1+ (1,0) [0|3] ""  ELFA_System
+
+BO_ 2348810251 TSC1_E: 8 EBS
+ SG_ MsgChecksum_SPN4207 : 60|4@1+ (1,0) [0|15] ""  ELFA_System
+ SG_ MsgCounter_SPN4206 : 56|4@1+ (1,0) [0|15] ""  ELFA_System
+ SG_ EngReqTqHighRes_SPN4191 : 40|4@1+ (1,0) [0|0.875] "%"  ELFA_System
+ SG_ TSC1CtrlPurpose_SPN3350 : 35|5@1+ (1,0) [0|31] "" Vector__XXX
+ SG_ TSC1TransRate_SPN3349 : 32|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ EngReqTq_TqLim_SPN518 : 24|8@1+ (1,-125) [-125|125] "%"  ELFA_System
+ SG_ EngReqSpd_SpdLim_SPN898 : 8|16@1+ (0.125,0) [0|8191.875] "Umin" Vector__XXX
+ SG_ OverrideCtrlModePrio_SPN897 : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EngReqSpdCtrlCond_SPN696 : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EngOverrideCtrlMode_SPN695 : 0|2@1+ (1,0) [0|3] ""  ELFA_System
+
+BO_ 2566832622 VDHR: 8 Tacograph
+ SG_ HighResTripDist_SPN917 : 32|32@1+ (5,0) [0|21055406075] "m"  ELFA_System
+ SG_ HighResVehDistance_SPN919 : 0|32@1+ (5,0) [0|21055406075] "m"  ELFA_System
+
+BO_ 2566842094 TD: 8 Tacograph
+ SG_ LocalHourOffset_SPN1602 : 56|8@1+ (1,-125) [-125|125] "hr"  ELFA_System
+ SG_ LocalMinOffset_SPN1601 : 48|8@1+ (1,-125) [-125|125] "mins"  ELFA_System
+ SG_ Year_SPN964 : 40|8@1+ (1,1985) [1985|2235] "years"  ELFA_System
+ SG_ Day_SPN962 : 32|8@1+ (0.25,0) [0|62.5] "days"  ELFA_System
+ SG_ Month_SPN963 : 24|8@1+ (1,0) [0|250] "months"  ELFA_System
+ SG_ Hours_SPN961 : 16|8@1+ (1,0) [0|250] "hr"  ELFA_System
+ SG_ Minutes_SPN960 : 8|8@1+ (1,0) [0|250] "mins"  ELFA_System
+ SG_ Seconds_SPN959 : 0|8@1+ (0.25,0) [0|62.5] "s"  ELFA_System
+
+BO_ 2565865488 ERC1_DR: 8 ELFA_System
+ SG_ RetTorqMode_SPN900 : 0|4@1+ (1,0) [0|15] ""  EBS
+ SG_ RetEnBrakeAssSw_SPN571 : 4|2@1+ (1,0) [0|3] ""  EBS
+ SG_ RetEnShifAssSw_SPN572 : 6|2@1+ (1,0) [0|3] ""  EBS
+ SG_ ActRetPercTorq_SPN520 : 8|8@1+ (1,-125) [-125|130] "%"  EBS
+ SG_ IntendRetPercTorq_SPN1085 : 16|8@1+ (1,-125) [-125|130] "%"  EBS
+ SG_ EngCoolLoadIncr_SPN1082 : 24|2@1+ (1,0) [0|3] ""  EBS
+ SG_ RetReqBrakeLight_SPN1667 : 26|2@1+ (1,0) [0|3] ""  EBS
+ SG_ RetRoadSpdLimSw_SPN4233 : 28|2@1+ (1,0) [0|3] ""  EBS
+ SG_ RetRoadSpdExcStat_SPN4234 : 30|2@1+ (1,0) [0|3] ""  EBS
+ SG_ SrcAddRetCtrl_SPN1480 : 32|8@1+ (1,0) [0|255] ""  EBS
+ SG_ DrvrsDemRetPercTorq_SPN1715 : 40|8@1+ (1,-125) [-125|130] "%"  EBS
+ SG_ RetSelNonEng_SPN1716 : 48|8@1+ (0.4,0) [0|100] "%"  EBS
+ SG_ ActlMaxAvRetPerTorq_SPN1717 : 56|8@1+ (1,-125) [-125|130] "%"  EBS
+
+BO_ 2364539395 ETC1: 8 ELFA_System
+ SG_ SrcAddrCtrlFrTrnsCtrl_SPN1482 : 56|8@1+ (1,0) [0|255] ""  EBS
+ SG_ TransmInpShaftSpeed_SPN161 : 40|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ MomentEngMaxPowEnable_SPN5015 : 36|2@1+ (1,0) [0|3] ""  EBS
+ SG_ ProgrShiftDisable_SPN607 : 34|2@1+ (1,0) [0|3] ""  EBS
+ SG_ EngMomentOverspEnable_SPN606 : 32|2@1+ (1,0) [0|3] ""  EBS
+ SG_ PercClutchSlip_SPN522 : 24|8@1+ (0.4,0) [0|100] "%"  EBS
+ SG_ TransmOutpShaftSpeed_SPN191 : 8|16@1+ (0.125,0) [0|8031.875] "rpm"  EBS
+ SG_ TrnsTqConvLckpTrnInProc_SPN4816 : 6|2@1+ (1,0) [0|3] ""  EBS
+ SG_ TransShiftInProc_SPN574 : 4|2@1+ (1,0) [0|3] ""  EBS
+ SG_ TrnsTqConvLckpEngaged_SPN573 : 2|2@1+ (1,0) [0|3] ""  EBS
+ SG_ TransmDrvLineEngaged_SPN560 : 0|2@1+ (1,0) [0|3] ""  EBS
+
+BO_ 2565866755 ETC2: 8 ELFA_System
+ SG_ TransmCurrRange_SPN163 : 48|16@1+ (1,0) [0|255] "per byte"  EBS
+ SG_ TransmReqRange_SPN162 : 32|16@1+ (1,0) [0|255] "per byte"  EBS
+ SG_ TransmCurrGear_SPN523 : 24|8@1+ (1,-125) [-125|125] ""  EBS
+ SG_ TransmActGearRatio_SPN526 : 8|16@1+ (0.001,0) [0|64.255] ""  EBS
+ SG_ TransmSelectedGear_SPN524 : 0|8@1+ (1,-125) [-125|125] ""  EBS
+
+BO_ 2364539994 EEC1_ELFA: 8 ELFA_System
+ SG_ EngDemandPercentTq_SPN2432 : 56|8@1+ (1,-125) [-125|125] "%" Vector__XXX
+ SG_ EngStarterMode_SPN1675 : 48|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ SrAdCntrllngDvcEngCtrl_SPN1483 : 40|8@1+ (1,0) [0|253] "" Vector__XXX
+ SG_ EngSpeed_SPN190 : 24|16@1+ (0.125,0) [0|8031.875] "rpm"  AEBS,ACC,EBS
+ SG_ ActualEngPercentTorque_SPN513 : 16|8@1+ (1,-125) [0|125] "%"  ACC,AEBS,EBS
+ SG_ DriversDemandEngPercentTq_SPN512 : 8|8@1+ (1,-125) [0|125] "%" Vector__XXX
+ SG_ ActlEngPrcntTqHighRes_SPN4154 : 4|4@1+ (0.125,0) [0|0.875] "%" Vector__XXX
+ SG_ EngTorqueMode_SPN899 : 0|4@1+ (1,0) [0|15] ""  EBS
+
+BO_ 2364539738 EEC2_ELFA: 8 ELFA_System
+ SG_ EstPumpingPercTrq_SPN5398 : 56|8@1+ (1,-125) [-125|125] "%" Vector__XXX
+ SG_ ActlMaxAvEngPercTrq_SPN3357 : 48|8@1+ (0.4,0) [0|100] "%"  EBS
+ SG_ SCRThermMgmntActive_SPN5400 : 46|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ DPFThermMgmntActive_SPN5399 : 44|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ MntryEngMaxPowEnFb_SPN5021 : 42|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ VehAccRateLimStatus_SPN2979 : 40|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ AccPedPos2_SPN29 : 32|8@1+ (0.4,0) [0|100] "%" Vector__XXX
+ SG_ RemoteAccPedalPos_SPN974 : 24|8@1+ (0.4,0) [0|100] "%" Vector__XXX
+ SG_ EngPercLoadAtCurrSpd_SPN92 : 16|8@1+ (1,0) [0|250] "%" Vector__XXX
+ SG_ AccPedPos1_SPN91 : 8|8@1+ (0.4,0) [0|100] "%" Vector__XXX
+ SG_ AccPed2LowIdleSw_SPN2970 : 6|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ RoadSpdLimStatus_SPN1437 : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ AccPedKickdownSwitch_SPN559 : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ AccPed1LowIdleSwitch_SPN558 : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 2566840154 EEC3_ELFA: 8 ELFA_System
+ SG_ AFT2ExhDewPoint : 62|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ AFT2InDewPoint : 60|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ AFT1ExhDewPoint : 58|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ AFT1InDewPoint : 56|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ AFT1ExhGasMFR : 40|16@1+ (0.2,0) [0|12851] "kg/h" Vector__XXX
+ SG_ EstEngPrsiticLossesPercentTorque : 32|8@1+ (1,-125) [0|125] "%" Vector__XXX
+ SG_ EngnsDsrdOprtngSpdAsymmtryAdjstm : 24|8@1+ (1,0) [0|250] "" Vector__XXX
+ SG_ EnginesDesiredOperatingSpeed : 8|16@1+ (0.125,0) [0|8031.875] "rpm" Vector__XXX
+ SG_ NominalFrictionPercentTorque : 0|8@1+ (1,-125) [-125|125] "%"  EBS
+
+BO_ 2566841178 EC1_ELFA: 8 ELFA_System
+ SG_ SupportTSC1CtrlPurposeGroup4 : 304|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ SupportTSC1CtrlPurposeGroup3 : 296|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ SupportTSC1CtrlPurposeGroup2 : 288|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ SupportTSC1CtrlPurposeGroup1 : 280|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ SupportVariableRateTSC1Message : 272|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ EngDefaultTorqueLimit : 256|16@1+ (1,0) [0|64255] "Nm" Vector__XXX
+ SG_ EngMomentOfInertia : 240|16@1+ (0.004,0) [0|257.02] "kg•m²" Vector__XXX
+ SG_ EngExRngRqstdSpdCtrlRngUpprLimit : 224|16@1+ (0.125,0) [0|8031.875] "rpm" Vector__XXX
+ SG_ EngRqstdTrqueCtrlRangeUpperLimit : 216|8@1+ (1,-125) [0|125] "%" Vector__XXX
+ SG_ EngRqstdTrqueCtrlRangeLowerLimit : 208|8@1+ (1,-125) [0|125] "%" Vector__XXX
+ SG_ EngRqstdSpeedCtrlRangeUpperLimit : 200|8@1+ (10,0) [0|2500] "rpm" Vector__XXX
+ SG_ EngRqstdSpeedCtrlRangeLowerLimit : 192|8@1+ (10,0) [0|2500] "rpm" Vector__XXX
+ SG_ EngMaxMomentaryOverrideTimeLimit : 184|8@1+ (0.1,0) [0|25] "s" Vector__XXX
+ SG_ EngMxMmentaryOverrideSpeedPoint7 : 168|16@1+ (0.125,0) [0|8031.875] "rpm" Vector__XXX
+ SG_ EngReferenceTorque_SPN544 : 152|16@1+ (1,0) [0|64255] "Nm"  EBS
+ SG_ EngGain : 136|16@1+ (0.00078125,0) [0|50.2] "%/rpm" Vector__XXX
+ SG_ EngSpeedAtHighIdlePoint6 : 120|16@1+ (0.125,0) [0|8031.875] "rpm" Vector__XXX
+ SG_ EngPercentTorqueAtPoint5 : 112|8@1+ (1,-125) [0|125] "%" Vector__XXX
+ SG_ EngSpeedAtPoint5 : 96|16@1+ (0.125,0) [0|8031.875] "rpm" Vector__XXX
+ SG_ EngPercentTorqueAtPoint4 : 88|8@1+ (1,-125) [0|125] "%" Vector__XXX
+ SG_ EngSpeedAtPoint4 : 72|16@1+ (0.125,0) [0|8031.875] "rpm" Vector__XXX
+ SG_ EngPercentTorqueAtPoint3 : 64|8@1+ (1,-125) [0|125] "%" Vector__XXX
+ SG_ EngSpeedAtPoint3 : 48|16@1+ (0.125,0) [0|8031.875] "rpm" Vector__XXX
+ SG_ EngPercentTorqueAtPoint2 : 40|8@1+ (1,-125) [0|125] "%" Vector__XXX
+ SG_ EngSpeedAtPoint2 : 24|16@1+ (0.125,0) [0|8031.875] "rpm" Vector__XXX
+ SG_ EngPercentTorqueAtIdlePoint1 : 16|8@1+ (1,-125) [0|125] "%" Vector__XXX
+ SG_ EngSpeedAtIdlePoint1 : 0|16@1+ (0.125,0) [0|8031.875] "rpm" Vector__XXX
+
+BO_ 2566840592 RC: 8 ELFA_System
+ SG_ PercentTorqueAtPeakTorquePoint5 : 144|8@1+ (1,-125) [-125|0] "%" Vector__XXX
+ SG_ ReferenceRetarderTorque_SPN556 : 128|16@1+ (1,0) [0|64255] "Nm"  EBS
+ SG_ RetarderSpeedAtPeakTorquePoint5 : 112|16@1+ (0.125,0) [0|8031.875] "rpm" Vector__XXX
+ SG_ PercentTorqueAtPoint4 : 104|8@1+ (1,-125) [-125|0] "%" Vector__XXX
+ SG_ RetarderSpeedAtPoint4 : 88|16@1+ (0.125,0) [0|8031.875] "rpm" Vector__XXX
+ SG_ PercentTorqueAtPoint3 : 80|8@1+ (1,-125) [-125|0] "%" Vector__XXX
+ SG_ RetarderSpeedAtPoint3 : 64|16@1+ (0.125,0) [0|8031.875] "rpm" Vector__XXX
+ SG_ PercentTorqueAtMaxSpeedPoint2 : 56|8@1+ (1,-125) [-125|0] "%" Vector__XXX
+ SG_ MaxRetarderSpeedPoint2 : 40|16@1+ (0.125,0) [0|8031.875] "rpm" Vector__XXX
+ SG_ PercentTorqueAtIdlePoint1 : 32|8@1+ (1,-125) [-125|0] "%" Vector__XXX
+ SG_ RetarderSpeedAtIdlePoint1 : 16|16@1+ (0.125,0) [0|8031.875] "rpm" Vector__XXX
+ SG_ RetarderCtrlMethod : 8|8@1+ (1,0) [0|250] "steps" Vector__XXX
+ SG_ RetarderLocation : 4|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ RetarderType : 0|4@1+ (1,0) [0|15] "" Vector__XXX
+
+
+
+CM_ BU_ AEBS "SA 0xA0
+Advanced emergency braking system
+A system which can detect a potential forward collision and automatically activate the vehicle braking system to decelerate the vehicle with the purpose of avoiding or mitigating a collision.";
+CM_ BU_ ACC "SA 0x2A
+Headway controller
+Forward-looking collision warning, collision avoidance, speed controller, or speed matching
+Industry Group 0 -  Global  (Table B2)";
+CM_ BO_ 2348810279 "Rx Configurable.
+Used if EVCU shall send directly a torque reference or torque limitation";
+CM_ SG_ 2348810279 EngOverrideCtrlMode_SPN695 "Currently only 'Speed/torque limit control' supported. Any other mode will react the same as 'Override disabled'";
+CM_ BO_ 2566708314 "Tx Configurable";
+CM_ SG_ 2566708314 CruiseCtrlSpeed_SPN7319 "Not available";
+CM_ SG_ 2566708314 CruiseCtrlSetSpeed_SPN6809 "Not available";
+CM_ SG_ 2566708314 PrdctvCrsCtrlStSpeedOffsetStatus "Not available";
+CM_ SG_ 2566708314 SrcAddrssOfCntrllngDvcFrPsngCrsC "Not available";
+CM_ SG_ 2566708314 SrcAddrssOfCntrllngDvcFrDsblngCr "Not available";
+CM_ SG_ 2566708314 CruiseCtrlSystemCmdState_SPN5807 "Not available";
+CM_ BO_ 2349530666 "Rx Configurable";
+CM_ SG_ 2349530666 CruiseCtrlDisableCmd_SPN5603 "An active CC shall be shut-off if CCVS2 SPN 5603 = 0x01 is sent from SA 0x2A";
+CM_ BO_ 2566844762 "Tx Configurable";
+CM_ SG_ 2566844762 TwoSpeedAxleSwitch_SPN69 "Not available";
+CM_ SG_ 2566844762 ParkingBrakeSw_SPN70 "Not available";
+CM_ SG_ 2566844762 CruiseCtrlPauseSw_SPN1633 "Not available";
+CM_ SG_ 2566844762 ParkBrakeRelInhReq_SPN3807 "Not available";
+CM_ SG_ 2566844762 WheelBasedVehSpd_SPN84 "Not available";
+CM_ SG_ 2566844762 CruiseCtrlAct_SPN595 "Not available";
+CM_ SG_ 2566844762 BrakeSw_SPN597 "Not available";
+CM_ SG_ 2566844762 ClutchSw_SPN598 "Not available";
+CM_ SG_ 2566844762 CruiseCtrlSetSw_SPN599 "Not available";
+CM_ SG_ 2566844762 CruiseCtrlCoastSw_SPN600 "Not available";
+CM_ SG_ 2566844762 CruiseCtrlResumeSw_SPN601 "Not available";
+CM_ SG_ 2566844762 CruiseCtrlAccSw_SPN602 "Not available";
+CM_ SG_ 2566844762 PTOGovernorState_SPN976 "Not available";
+CM_ SG_ 2566844762 EngIdleIncSw_SPN968 "Not available";
+CM_ SG_ 2566844762 EngIdleDecSw_SPN967 "Not available";
+CM_ SG_ 2566844762 EngTestModeSw_SPN966 "Not available";
+CM_ SG_ 2566844762 EngShutdOverrSw_SPN1237 "Not available";
+CM_ BO_ 2566843738 "Optional for Wabco => will not be implemented
+On Request (no cyclic)";
+CM_ BO_ 2364551072 "Rx Configurable";
+CM_ SG_ 2364551072 TmeToCollisionWithRelevantObject "Not used";
+CM_ SG_ 2364551072 BndOffPrbabilityOfRelevantObject "Not used";
+CM_ SG_ 2364551072 RlvntObjctDtctdFrAdvncdEmrgncyBr "Not used";
+CM_ SG_ 2364551072 CollisionWarningLevel_SPN5677 "Not used";
+CM_ BO_ 2566840815 "Tx Configurable: Only required for EBS3 Wabco";
+CM_ BO_ 2566840816 "Tx Configurable: Only required for EBS3 Wabco";
+CM_ BO_ 2566841327 "Tx Configurable: Only required for EBS3 Wabco";
+CM_ BO_ 2566841328 "Tx Configurable: Only required for EBS3 Wabco";
+CM_ BO_ 2566840303 "Tx Configurable: Only required for EBS3 Wabco";
+CM_ SG_ 2566840303 EM1_EstdEngParaLossPT_SPN2978 "Not available";
+CM_ SG_ 2566840303 EM1_EngDesrdOpSpdAsymAdj_SPN519 "Not available";
+CM_ SG_ 2566840303 EM1_EngDesrdOpSpd_SPN515 "Not available";
+CM_ BO_ 2566840304 "Tx Configurable: Only required for EBS3 Wabco";
+CM_ SG_ 2566840304 EM2_EstdEngParaLossPT_SPN2978 "Not available";
+CM_ SG_ 2566840304 EM2_EngDesrdOpSpdAsymAdj_SPN519 "Not available";
+CM_ SG_ 2566840304 EM2_EngDesrdOpSpd_SPN515 "Not available";
+CM_ BO_ 2364534539 "Rx Configurable";
+CM_ BO_ 2364534795 "Rx Configurable";
+CM_ BO_ 2566856943 "Tx Configurable: Only required for EBS3 Wabco";
+CM_ BO_ 2566856944 "Tx Configurable: Only required for EBS3 Wabco";
+CM_ BO_ 2432593706 "Rx Configurable";
+CM_ SG_ 2432593706 ForwardCollisionWarning_SPN5022 "No used";
+CM_ SG_ 2432593706 ACCDistanceAlertSignal_SPN1796 "No used";
+CM_ SG_ 2432593706 ACCSystemShutoffWarning_SPN1797 "No used";
+CM_ SG_ 2432593706 ACCTargetDetectedSPN1798 "No used";
+CM_ SG_ 2432593706 RoadCurvature_SPN1591 "No used";
+CM_ SG_ 2432593706 AdptveCruiCtrlSetDistMod_SPN1589 "No used";
+CM_ SG_ 2432593706 AdaptiveCruiseCtrlSetSpd_SPN1588 "No used";
+CM_ SG_ 2432593706 DistanceToForwardVehicle_SPN1587 "No used";
+CM_ SG_ 2432593706 SpeedOfForwardVehicle_SPN1586 "No used";
+CM_ BO_ 2348814378 "Rx Configurable";
+CM_ SG_ 2348814378 EngOverrideCtrlMode_SPN695 "Currently only 'Speed/torque limit control' supported. Any other mode will react the same as 'Override disabled'";
+CM_ BO_ 2348810400 "Rx Configurable";
+CM_ SG_ 2348810400 EngOverrideCtrlMode_SPN695 "Currently only 'Speed/torque limit control' supported. Any other mode will react the same as 'Override disabled'";
+CM_ BO_ 2348810282 "Rx Configurable";
+CM_ SG_ 2348810282 EngOverrideCtrlMode_SPN695 "Currently only 'Speed/torque limit control' supported. Any other mode will react the same as 'Override disabled'";
+CM_ BO_ 2566885210 "Requests and status data from the ELFA System";
+CM_ SG_ 2566885210 ES_pchgContactorCommand "Command to connect the Energy Storage to the ELFA System using the pre-charge mechanism of the ES";
+CM_ SG_ 2566885210 MessageCounter "Same algorith as J1939 SPN 4206";
+CM_ SG_ 2566885210 CRC "Same algorith as J1939 SPN 4207";
+CM_ SG_ 2566885210 DNR_status "Accepted gear for the ELFA traction system. When 'Neutral' is indicated, not torque will be applied.";
+CM_ SG_ 2566885210 ES_mainContactorCommand "Command to connect or disconnect the Energy Storage to the ELFA System.  An 'Open Contactor' command may involve delay or conditions before disconnection, but an 'Emergency disconnection' shall disconnect the ES as quickly as possible for safety reasons";
+CM_ BO_ 2566864167 "Vehicle requests and status data for the ELFA System";
+CM_ SG_ 2566864167 MessageCounter "Same algorith as J1939 SPN 4206";
+CM_ SG_ 2566864167 CRC "Same algorith as J1939 SPN 4207";
+CM_ SG_ 2566864167 CoolingTractSysStatus "Used to protect the ELFA components if there is a cooling error. Used for applications where the system cooling pressure sensor is not connected to ELFA but communicated through CAN.";
+CM_ SG_ 2566864167 OperationModeReq "Selection of the used Power Source(s) and/or Energy Storage(s) by the ELFA system. The system uses any selection diferent to 'No mode' as a start command";
+CM_ BO_ 2566889203 "Electrical data & status for the high voltage Energy Storage 1";
+CM_ SG_ 2566889203 DischargeCurrentLimit "The maximum permissible current flow out of the Energy Storage
+SAEec01 allows negative current, however this signal uses only positive values (only discharging)";
+CM_ SG_ 2566889203 StateOfCharge "Ratio of the amount of stored electrical charge in the high voltage energy storage to maximum storage capacity";
+CM_ SG_ 2566889203 MessageCounter "Same algorith as J1939 SPN 4206";
+CM_ SG_ 2566889203 CRC "Same algorith as J1939 SPN 4207";
+CM_ SG_ 2566889203 ChargeCurrentLimit "The maximum permissible current flow into the Energy Storage
+SAEec01 allows positive current, however this signal uses only negative values";
+CM_ BO_ 2566889459 "Electrical data & status for the high voltage Energy Storage 1";
+CM_ SG_ 2566889459 VoltageES_fb "The voltage level of the high voltage Energy Storage If the HVES component physically contains the contactors which connect it to the vehicle high voltage system, then this voltage is measured before those contactors.";
+CM_ SG_ 2566889459 ES_mainContactorState "Status of the high voltage Energy Storage bus contactor to the ELFA System.  When this signal indicates 'contactor closed', both positive & negative sides of the Energy storage are connected to the ELFA System";
+CM_ SG_ 2566889459 MessageCounter "Same algorith as J1939 SPN 4206";
+CM_ SG_ 2566889459 CRC "Same algorith as J1939 SPN 4207";
+CM_ SG_ 2566889459 VoltES_min "Min voltage limitation considered by ELFA when contactors are closed
+SAEev04 allows negative voltage, however this signal uses only positive values";
+CM_ SG_ 2566889459 VoltES_max "Max voltage limitation considered by ELFA when contactors are closed
+SAEev04 allows negative voltage, however this signal uses only positive values";
+CM_ BO_ 2566864423 "Reserved for future functions which need E2E protection but don't need a high transmission rate (e.g. speed limits)";
+CM_ SG_ 2566864423 MessageCounter "Same algorith as J1939 SPN 4206";
+CM_ SG_ 2566864423 CRC "Same algorith as J1939 SPN 4207";
+CM_ BO_ 2365538087 "Safety & time critical signals related to driving: accelerator, brake, DNR, ... Protected by checksum and counter
+Signals such as Key Start or Mode selection are not time critical & may be included in a slower message and/or without protection";
+CM_ SG_ 2365538087 Retarder "Low priority retardation torque request, which can be overriden by external acceleration commands (e.g. accelerator pedal)";
+CM_ SG_ 2365538087 ParkingBrakeSwitch "Switch signal which indicates when the parking brake is set. Same meaning as J1939 SPN 70.This signal shall be used instead of SPN 70 in CCVS1 because of E2E protection (CCVS1 has to E2E protection)";
+CM_ SG_ 2365538087 HaltBrakeSwitch "Switch signal which indicates the position of the halt brake switch.
+Same meaning as J1939 SPN 2911. This signal shall be used instead of SPN2911 in EBC1, because of E2E protection (EBC1 offers no E2E protection)";
+CM_ SG_ 2365538087 DNR_selection "Gear (e.g. direction) request for the ELFA System. 'Drive' or 'Reverse' are only accepted if necessary consitions are met. A 'Neutral' selection shall deactivate the torque. If sent as 'Not available' the ELFA System will shift to 'Neutral'";
+CM_ SG_ 2365538087 BrakePedalSwitch "Switch signal which indicates that the brake pedal is being pressed. Used for the plausibility checks of the BrakePedalPosition signal";
+CM_ SG_ 2365538087 BrakePedalPosition "Ratio of brake pedal position to maximum pedal position";
+CM_ SG_ 2365538087 MessageCounter "Same algorith as J1939 SPN 4206";
+CM_ SG_ 2365538087 CRC "Same algorith as J1939 SPN 4207";
+CM_ SG_ 2365538087 AcceleratorPedalSwitch "Switch signal which indicates that the accelerator pedal is being pressed. Used for the plausibility check of the AcceleratorPedalPosition signal";
+CM_ SG_ 2365538087 AcceleratorPedalPosition "Ratio of accelerator pedal position to maximum pedal position";
+CM_ BO_ 2565865739 "Configurable";
+CM_ SG_ 2565865739 EngAuxShutdSw_SPN970 "Not used";
+CM_ SG_ 2565865739 ASREngCtrlAct_SPN561 "Not used";
+CM_ SG_ 2565865739 ASRBrakeCtrlActive_SPN562 "Not used";
+CM_ SG_ 2565865739 AntiLockBrakingActive_SPN563 "Not used";
+CM_ SG_ 2565865739 ABSOffRoadSw_SPN575 "Not used";
+CM_ SG_ 2565865739 ASROffRoadSw_SPN576 "Not used";
+CM_ SG_ 2565865739 ASRHillHolderSw_SPN577 "Not used";
+CM_ SG_ 2565865739 TractCtrlOverrSw_SPN1238 "Not used";
+CM_ SG_ 2565865739 AccInterlSw_SPN972 "Not used";
+CM_ SG_ 2565865739 EngDerateSw_SPN971 "Not used";
+CM_ SG_ 2565865739 RemoteAccEnSw_SPN969 "Not used";
+CM_ SG_ 2565865739 EngRetarderSel_SPN973 "Not used";
+CM_ SG_ 2565865739 ABSFullyOperat_SPN1243 "Not used";
+CM_ SG_ 2565865739 EBSRedWarnSig_SPN1439 "Not used";
+CM_ SG_ 2565865739 ABSEBSAmberWarnSig_SPN1438 "Not used";
+CM_ SG_ 2565865739 ATCASRInfoSig_SPN1793 "Not used";
+CM_ SG_ 2565865739 SrcAddBrakeCtrl_SPN1481 "Not used";
+CM_ SG_ 2565865739 HaltBrakeSw_SPN2911 "Not used";
+CM_ SG_ 2565865739 TrailerABSStatus_SPN1836 "Not used";
+CM_ SG_ 2565865739 TrMntTrlABSWrnSig_SPN1792 "Not used";
+CM_ BO_ 2348814347 "Rx Configurable";
+CM_ SG_ 2348814347 EngOverrideCtrlMode_SPN695 "Currently only 'Speed/torque limit control' supported. Any other mode will react the same as 'Override disabled'";
+CM_ BO_ 2348810251 "Rx Configurable";
+CM_ SG_ 2348810251 EngOverrideCtrlMode_SPN695 "Currently only 'Speed/torque limit control' supported. Any other mode will react the same as 'Override disabled'";
+CM_ BO_ 2566832622 "Vehicle distance information needed by ELFA System for diagnostic functions";
+CM_ BO_ 2566842094 "Time information needed by ELFA System for diagnostic functions";
+CM_ BO_ 2565865488 "Tx Configurable";
+CM_ SG_ 2565865488 RetEnBrakeAssSw_SPN571 "Not available";
+CM_ SG_ 2565865488 RetEnShifAssSw_SPN572 "Not available";
+CM_ SG_ 2565865488 IntendRetPercTorq_SPN1085 "Not available";
+CM_ SG_ 2565865488 EngCoolLoadIncr_SPN1082 "Not available";
+CM_ SG_ 2565865488 RetReqBrakeLight_SPN1667 "Not available";
+CM_ SG_ 2565865488 RetRoadSpdLimSw_SPN4233 "Not available";
+CM_ SG_ 2565865488 RetRoadSpdExcStat_SPN4234 "Not available";
+CM_ SG_ 2565865488 SrcAddRetCtrl_SPN1480 "Not available";
+CM_ SG_ 2565865488 DrvrsDemRetPercTorq_SPN1715 "Not available";
+CM_ SG_ 2565865488 RetSelNonEng_SPN1716 "Not available";
+CM_ BO_ 2364539395 "Tx Configurable";
+CM_ SG_ 2364539395 SrcAddrCtrlFrTrnsCtrl_SPN1482 "Not available";
+CM_ SG_ 2364539395 MomentEngMaxPowEnable_SPN5015 "Not available";
+CM_ SG_ 2364539395 ProgrShiftDisable_SPN607 "Not available";
+CM_ SG_ 2364539395 EngMomentOverspEnable_SPN606 "Not available";
+CM_ SG_ 2364539395 PercClutchSlip_SPN522 "Not available";
+CM_ SG_ 2364539395 TransmOutpShaftSpeed_SPN191 "Not available";
+CM_ SG_ 2364539395 TrnsTqConvLckpTrnInProc_SPN4816 "Not available";
+CM_ SG_ 2364539395 TransShiftInProc_SPN574 "Tx: always'Shift is not in process'";
+CM_ SG_ 2364539395 TransmDrvLineEngaged_SPN560 "Tx: 'Driveline engaged' in accepted gear D or R, 'Driveline disengaged' in N";
+CM_ BO_ 2565866755 "Tx Configurable";
+CM_ SG_ 2565866755 TransmCurrRange_SPN163 "Not available";
+CM_ SG_ 2565866755 TransmReqRange_SPN162 "Not available";
+CM_ SG_ 2565866755 TransmActGearRatio_SPN526 "Not available";
+CM_ SG_ 2565866755 TransmSelectedGear_SPN524 "Not available";
+CM_ BO_ 2364539994 "Tx Configurable. Use SA 0x5A (instead of SA 0x00) to avoid conflicts in hybrid systems with an engine  (SA 0x5A is defined by J1939 as a Powertrain Control Module)";
+CM_ SG_ 2364539994 EngDemandPercentTq_SPN2432 "Not available";
+CM_ SG_ 2364539994 EngStarterMode_SPN1675 "Not available";
+CM_ SG_ 2364539994 SrAdCntrllngDvcEngCtrl_SPN1483 "Not available";
+CM_ SG_ 2364539994 ActlEngPrcntTqHighRes_SPN4154 "Not available";
+CM_ BO_ 2364539738 "Tx Configurable. Use SA 0x5A (instead of SA 0x00) to avoid conflicts in hybrid systems with an engine  (SA 0x5A is defined by J1939 as a Powertrain Control Module)";
+CM_ SG_ 2364539738 EstPumpingPercTrq_SPN5398 "Not available";
+CM_ SG_ 2364539738 SCRThermMgmntActive_SPN5400 "Not available";
+CM_ SG_ 2364539738 DPFThermMgmntActive_SPN5399 "Not available";
+CM_ SG_ 2364539738 MntryEngMaxPowEnFb_SPN5021 "Not available";
+CM_ SG_ 2364539738 VehAccRateLimStatus_SPN2979 "Not available";
+CM_ SG_ 2364539738 AccPedPos2_SPN29 "Not available";
+CM_ SG_ 2364539738 RemoteAccPedalPos_SPN974 "Not available";
+CM_ SG_ 2364539738 EngPercLoadAtCurrSpd_SPN92 "Not available";
+CM_ SG_ 2364539738 AccPedPos1_SPN91 "Not available";
+CM_ SG_ 2364539738 AccPed2LowIdleSw_SPN2970 "Not available";
+CM_ SG_ 2364539738 RoadSpdLimStatus_SPN1437 "Not available";
+CM_ SG_ 2364539738 AccPedKickdownSwitch_SPN559 "Not available";
+CM_ SG_ 2364539738 AccPed1LowIdleSwitch_SPN558 "Not available";
+CM_ BO_ 2566840154 "Tx Configurable. Use SA 0x5A (instead of SA 0x00) to avoid conflicts in hybrid systems with an engine  (SA 0x5A is defined by J1939 as a Powertrain Control Module)";
+CM_ SG_ 2566840154 AFT2ExhDewPoint "Not available";
+CM_ SG_ 2566840154 AFT2InDewPoint "Not available";
+CM_ SG_ 2566840154 AFT1ExhDewPoint "Not available";
+CM_ SG_ 2566840154 AFT1InDewPoint "Not available";
+CM_ SG_ 2566840154 AFT1ExhGasMFR "Not available";
+CM_ SG_ 2566840154 EstEngPrsiticLossesPercentTorque "Not available";
+CM_ SG_ 2566840154 EngnsDsrdOprtngSpdAsymmtryAdjstm "Not available";
+CM_ SG_ 2566840154 EnginesDesiredOperatingSpeed "Not available";
+CM_ BO_ 2566841178 "Tx Configurable. Multipackage (Main cycle as GenMsgCycleTime, packages sent every 100ms)
+Use SA 0x5A (instead of SA 0x00) to avoid conflicts in hybrid systems with an engine (SA 0x5A is defined by J1939 as a Powertrain Control Module)";
+CM_ SG_ 2566841178 SupportTSC1CtrlPurposeGroup4 "Not available";
+CM_ SG_ 2566841178 SupportTSC1CtrlPurposeGroup3 "Not available";
+CM_ SG_ 2566841178 SupportTSC1CtrlPurposeGroup2 "Not available";
+CM_ SG_ 2566841178 SupportTSC1CtrlPurposeGroup1 "Not available";
+CM_ SG_ 2566841178 SupportVariableRateTSC1Message "Not available";
+CM_ SG_ 2566841178 EngDefaultTorqueLimit "Not available";
+CM_ SG_ 2566841178 EngMomentOfInertia "Not available";
+CM_ SG_ 2566841178 EngExRngRqstdSpdCtrlRngUpprLimit "Not available";
+CM_ SG_ 2566841178 EngRqstdTrqueCtrlRangeUpperLimit "Not available";
+CM_ SG_ 2566841178 EngRqstdTrqueCtrlRangeLowerLimit "Not available";
+CM_ SG_ 2566841178 EngRqstdSpeedCtrlRangeUpperLimit "Not available";
+CM_ SG_ 2566841178 EngRqstdSpeedCtrlRangeLowerLimit "Not available";
+CM_ SG_ 2566841178 EngMaxMomentaryOverrideTimeLimit "Not available";
+CM_ SG_ 2566841178 EngMxMmentaryOverrideSpeedPoint7 "Not available";
+CM_ SG_ 2566841178 EngGain "Not available";
+CM_ SG_ 2566841178 EngSpeedAtHighIdlePoint6 "Not available";
+CM_ SG_ 2566841178 EngPercentTorqueAtPoint5 "Not available";
+CM_ SG_ 2566841178 EngSpeedAtPoint5 "Not available";
+CM_ SG_ 2566841178 EngPercentTorqueAtPoint4 "Not available";
+CM_ SG_ 2566841178 EngSpeedAtPoint4 "Not available";
+CM_ SG_ 2566841178 EngPercentTorqueAtPoint3 "Not available";
+CM_ SG_ 2566841178 EngSpeedAtPoint3 "Not available";
+CM_ SG_ 2566841178 EngPercentTorqueAtPoint2 "Not available";
+CM_ SG_ 2566841178 EngSpeedAtPoint2 "Not available";
+CM_ SG_ 2566841178 EngPercentTorqueAtIdlePoint1 "Not available";
+CM_ SG_ 2566841178 EngSpeedAtIdlePoint1 "Not available";
+CM_ BO_ 2566840592 "Tx Configurable. Multipackage (Main cycle as GenMsgCycleTime, packeages sent every 100ms)";
+CM_ SG_ 2566840592 PercentTorqueAtPeakTorquePoint5 "Not available";
+CM_ SG_ 2566840592 RetarderSpeedAtPeakTorquePoint5 "Not available";
+CM_ SG_ 2566840592 PercentTorqueAtPoint4 "Not available";
+CM_ SG_ 2566840592 RetarderSpeedAtPoint4 "Not available";
+CM_ SG_ 2566840592 PercentTorqueAtPoint3 "Not available";
+CM_ SG_ 2566840592 RetarderSpeedAtPoint3 "Not available";
+CM_ SG_ 2566840592 PercentTorqueAtMaxSpeedPoint2 "Not available";
+CM_ SG_ 2566840592 MaxRetarderSpeedPoint2 "Not available";
+CM_ SG_ 2566840592 PercentTorqueAtIdlePoint1 "Not available";
+CM_ SG_ 2566840592 RetarderSpeedAtIdlePoint1 "Not available";
+CM_ SG_ 2566840592 RetarderCtrlMethod "Not available";
+BA_DEF_ SG_  "ASIL_Criticality" ENUM  "QM","ASIL A","ASIL B","ASIL C";
+BA_DEF_ SG_  "SLOT" STRING ;
+BA_DEF_ SG_  "SPN" INT 0 524287;
+BA_DEF_ SG_  "GenSigStartValue" FLOAT 0 100000000000;
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepetition","NoSigSendType","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed";
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 100000;
+BA_DEF_ SG_  "GenSigTimeOutTime" INT 0 65535;
+BA_DEF_ SG_  "SigType" ENUM  "DEFAULT","RANGE","RANGESIGNED","ASCII","DISCRETE","CONTROL","REFERENCEPGN","DTC","STRINGDELIMITER","STRINGLENGTH","STRINGLENGTHCONTROL","vector_leerstring";
+BA_DEF_ BO_  "GenMsgNrOfRepetition" INT 0 999999;
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 1000;
+BA_DEF_ BO_  "GenMsgCycleTimeFast" INT 0 50000;
+BA_DEF_ BO_  "NmMessage" ENUM  "no","yes";
+BA_DEF_ BO_  "VFrameFormat" ENUM  "CAN Standard","CAN Extended","reserved","J1939 PG","vector_leerstring";
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "cyclic","NotUsed","IfActive","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed","noMsgSendType";
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 3600000;
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 0;
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "No","Yes","vector_leerstring";
+BA_DEF_ BU_  "NmStationAddress" INT 0 255;
+BA_DEF_ BU_  "NmNode" ENUM  "no","yes";
+BA_DEF_ BU_  "ILUsed" ENUM  "No","Yes","vector_leerstring";
+BA_DEF_  "Manufacturer" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_ BU_  "ECU" STRING ;
+BA_DEF_ BU_  "CANoeJitterMax" INT 0 0;
+BA_DEF_ BU_  "CANoeJitterMin" INT 0 0;
+BA_DEF_ BU_  "CANoeDrift" INT 0 0;
+BA_DEF_ BU_  "CANoeStartDelay" INT 0 0;
+BA_DEF_DEF_  "ASIL_Criticality" "QM";
+BA_DEF_DEF_  "SLOT" "";
+BA_DEF_DEF_  "SPN" 0;
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenSigSendType" "Cyclic";
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenSigTimeOutTime" 0;
+BA_DEF_DEF_  "SigType" "DEFAULT";
+BA_DEF_DEF_  "GenMsgNrOfRepetition" 0;
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_  "NmMessage" "no";
+BA_DEF_DEF_  "VFrameFormat" "CAN Extended";
+BA_DEF_DEF_  "GenMsgSendType" "cyclic";
+BA_DEF_DEF_  "GenMsgCycleTime" 100;
+BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_  "GenMsgILSupport" "Yes";
+BA_DEF_DEF_  "NmStationAddress" 254;
+BA_DEF_DEF_  "NmNode" "no";
+BA_DEF_DEF_  "ILUsed" "Yes";
+BA_DEF_DEF_  "Manufacturer" "Siemens";
+BA_DEF_DEF_  "BusType" "";
+BA_DEF_DEF_  "NodeLayerModules" "";
+BA_DEF_DEF_  "ECU" "";
+BA_DEF_DEF_  "CANoeJitterMax" 0;
+BA_DEF_DEF_  "CANoeJitterMin" 0;
+BA_DEF_DEF_  "CANoeDrift" 0;
+BA_DEF_DEF_  "CANoeStartDelay" 0;
+BA_ "BusType" "CAN";
+BA_ "NmStationAddress" BU_ Tacograph 238;
+BA_ "NmStationAddress" BU_ AEBS 160;
+BA_ "NmStationAddress" BU_ ACC 42;
+BA_ "NmStationAddress" BU_ BMU 243;
+BA_ "NmStationAddress" BU_ EBS 11;
+BA_ "NmStationAddress" BU_ EVCU 39;
+BA_ "NmStationAddress" BU_ ELFA_System 90;
+BA_ "GenMsgCycleTime" BO_ 2348810279 10;
+BA_ "GenMsgCycleTime" BO_ 2566708314 1000;
+BA_ "GenMsgCycleTime" BO_ 2364551072 50;
+BA_ "GenMsgCycleTime" BO_ 2566840815 5000;
+BA_ "GenMsgCycleTime" BO_ 2566840816 5000;
+BA_ "GenMsgCycleTime" BO_ 2566841327 5000;
+BA_ "GenMsgCycleTime" BO_ 2566841328 5000;
+BA_ "GenMsgCycleTime" BO_ 2566840303 250;
+BA_ "GenMsgCycleTime" BO_ 2566840304 250;
+BA_ "GenMsgCycleTime" BO_ 2566856943 10;
+BA_ "GenMsgCycleTime" BO_ 2566856944 10;
+BA_ "GenMsgCycleTime" BO_ 2348814378 10;
+BA_ "GenMsgCycleTime" BO_ 2348810400 10;
+BA_ "GenMsgCycleTime" BO_ 2348810282 10;
+BA_ "VFrameFormat" BO_ 2566885210 1;
+BA_ "GenMsgCycleTime" BO_ 2566889203 50;
+BA_ "GenMsgCycleTime" BO_ 2566889459 50;
+BA_ "GenMsgCycleTime" BO_ 2365538087 10;
+BA_ "GenMsgCycleTime" BO_ 2348814347 10;
+BA_ "GenMsgCycleTime" BO_ 2348810251 10;
+BA_ "GenMsgCycleTime" BO_ 2566832622 1000;
+BA_ "GenMsgCycleTime" BO_ 2566842094 1000;
+BA_ "GenMsgCycleTime" BO_ 2565865488 100;
+BA_ "GenMsgCycleTime" BO_ 2364539395 10;
+BA_ "GenMsgCycleTime" BO_ 2364539994 50;
+BA_ "GenMsgCycleTime" BO_ 2364539738 50;
+BA_ "GenMsgCycleTime" BO_ 2566840154 250;
+BA_ "GenMsgCycleTime" BO_ 2566841178 5000;
+BA_ "GenMsgCycleTime" BO_ 2566840592 5000;
+BA_ "ASIL_Criticality" SG_ 2348810279 MsgChecksum_SPN4207 2;
+BA_ "ASIL_Criticality" SG_ 2348810279 MsgCounter_SPN4206 2;
+BA_ "ASIL_Criticality" SG_ 2348810279 EngReqTqHighRes_SPN4191 2;
+BA_ "SLOT" SG_ 2348810279 EngReqTqHighRes_SPN4191 "SAEpc10";
+BA_ "ASIL_Criticality" SG_ 2348810279 EngReqTq_TqLim_SPN518 2;
+BA_ "SLOT" SG_ 2348810279 EngReqTq_TqLim_SPN518 "SAEpc05";
+BA_ "SLOT" SG_ 2348810279 EngReqSpd_SpdLim_SPN898 "SAEvr01";
+BA_ "ASIL_Criticality" SG_ 2348810279 EngOverrideCtrlMode_SPN695 2;
+BA_ "ASIL_Criticality" SG_ 2348814378 MsgChecksum_SPN4207 3;
+BA_ "ASIL_Criticality" SG_ 2348814378 MsgCounter_SPN4206 3;
+BA_ "ASIL_Criticality" SG_ 2348814378 EngReqTqHighRes_SPN4191 3;
+BA_ "SLOT" SG_ 2348814378 EngReqTqHighRes_SPN4191 "SAEpc10";
+BA_ "ASIL_Criticality" SG_ 2348814378 EngReqTq_TqLim_SPN518 3;
+BA_ "SLOT" SG_ 2348814378 EngReqTq_TqLim_SPN518 "SAEpc05";
+BA_ "SLOT" SG_ 2348814378 EngReqSpd_SpdLim_SPN898 "SAEvr01";
+BA_ "ASIL_Criticality" SG_ 2348814378 EngOverrideCtrlMode_SPN695 3;
+BA_ "ASIL_Criticality" SG_ 2348810400 MsgChecksum_SPN4207 3;
+BA_ "ASIL_Criticality" SG_ 2348810400 MsgCounter_SPN4206 3;
+BA_ "ASIL_Criticality" SG_ 2348810400 EngReqTqHighRes_SPN4191 3;
+BA_ "SLOT" SG_ 2348810400 EngReqTqHighRes_SPN4191 "SAEpc10";
+BA_ "ASIL_Criticality" SG_ 2348810400 EngReqTq_TqLim_SPN518 3;
+BA_ "SLOT" SG_ 2348810400 EngReqTq_TqLim_SPN518 "SAEpc05";
+BA_ "SLOT" SG_ 2348810400 EngReqSpd_SpdLim_SPN898 "SAEvr01";
+BA_ "ASIL_Criticality" SG_ 2348810400 EngOverrideCtrlMode_SPN695 3;
+BA_ "ASIL_Criticality" SG_ 2348810282 MsgChecksum_SPN4207 3;
+BA_ "ASIL_Criticality" SG_ 2348810282 MsgCounter_SPN4206 3;
+BA_ "ASIL_Criticality" SG_ 2348810282 EngReqTqHighRes_SPN4191 3;
+BA_ "SLOT" SG_ 2348810282 EngReqTqHighRes_SPN4191 "SAEpc10";
+BA_ "ASIL_Criticality" SG_ 2348810282 EngReqTq_TqLim_SPN518 3;
+BA_ "SLOT" SG_ 2348810282 EngReqTq_TqLim_SPN518 "SAEpc05";
+BA_ "SLOT" SG_ 2348810282 EngReqSpd_SpdLim_SPN898 "SAEvr01";
+BA_ "ASIL_Criticality" SG_ 2348810282 EngOverrideCtrlMode_SPN695 3;
+BA_ "ASIL_Criticality" SG_ 2566864167 MessageCounter 3;
+BA_ "ASIL_Criticality" SG_ 2566864167 CRC 3;
+BA_ "SLOT" SG_ 2566889203 DischargeCurrentLimit "SAEec01";
+BA_ "GenSigStartValue" SG_ 2566889203 DischargeCurrentLimit 32000;
+BA_ "SLOT" SG_ 2566889203 StateOfCharge "SAEpc03";
+BA_ "SLOT" SG_ 2566889203 ChargeCurrentLimit "SAEec01";
+BA_ "GenSigStartValue" SG_ 2566889203 ChargeCurrentLimit 32000;
+BA_ "SLOT" SG_ 2566889459 VoltageES_fb "SAEev04";
+BA_ "GenSigStartValue" SG_ 2566889459 VoltageES_fb 32120;
+BA_ "SLOT" SG_ 2566889459 VoltES_min "SAEev04";
+BA_ "GenSigStartValue" SG_ 2566889459 VoltES_min 32120;
+BA_ "SLOT" SG_ 2566889459 VoltES_max "SAEev04";
+BA_ "GenSigStartValue" SG_ 2566889459 VoltES_max 32120;
+BA_ "ASIL_Criticality" SG_ 2365538087 Retarder 3;
+BA_ "SLOT" SG_ 2365538087 Retarder "SAEpc03";
+BA_ "ASIL_Criticality" SG_ 2365538087 ParkingBrakeSwitch 3;
+BA_ "ASIL_Criticality" SG_ 2365538087 HaltBrakeSwitch 3;
+BA_ "ASIL_Criticality" SG_ 2365538087 DNR_selection 3;
+BA_ "ASIL_Criticality" SG_ 2365538087 BrakePedalSwitch 3;
+BA_ "ASIL_Criticality" SG_ 2365538087 BrakePedalPosition 3;
+BA_ "SLOT" SG_ 2365538087 BrakePedalPosition "SAEpc03";
+BA_ "ASIL_Criticality" SG_ 2365538087 MessageCounter 3;
+BA_ "ASIL_Criticality" SG_ 2365538087 CRC 3;
+BA_ "ASIL_Criticality" SG_ 2365538087 AcceleratorPedalSwitch 3;
+BA_ "ASIL_Criticality" SG_ 2365538087 AcceleratorPedalPosition 3;
+BA_ "SLOT" SG_ 2365538087 AcceleratorPedalPosition "SAEpc03";
+BA_ "SLOT" SG_ 2565865739 BrakePedalPos_SPN521 "SAEpc03";
+BA_ "ASIL_Criticality" SG_ 2348814347 MsgChecksum_SPN4207 3;
+BA_ "ASIL_Criticality" SG_ 2348814347 MsgCounter_SPN4206 3;
+BA_ "ASIL_Criticality" SG_ 2348814347 EngReqTqHighRes_SPN4191 3;
+BA_ "SLOT" SG_ 2348814347 EngReqTqHighRes_SPN4191 "SAEpc10";
+BA_ "ASIL_Criticality" SG_ 2348814347 EngReqTq_TqLim_SPN518 3;
+BA_ "SLOT" SG_ 2348814347 EngReqTq_TqLim_SPN518 "SAEpc05";
+BA_ "SLOT" SG_ 2348814347 EngReqSpd_SpdLim_SPN898 "SAEvr01";
+BA_ "ASIL_Criticality" SG_ 2348814347 EngOverrideCtrlMode_SPN695 3;
+BA_ "ASIL_Criticality" SG_ 2348810251 MsgChecksum_SPN4207 2;
+BA_ "ASIL_Criticality" SG_ 2348810251 MsgCounter_SPN4206 2;
+BA_ "ASIL_Criticality" SG_ 2348810251 EngReqTqHighRes_SPN4191 2;
+BA_ "SLOT" SG_ 2348810251 EngReqTqHighRes_SPN4191 "SAEpc10";
+BA_ "ASIL_Criticality" SG_ 2348810251 EngReqTq_TqLim_SPN518 2;
+BA_ "SLOT" SG_ 2348810251 EngReqTq_TqLim_SPN518 "SAEpc05";
+BA_ "SLOT" SG_ 2348810251 EngReqSpd_SpdLim_SPN898 "SAEvr01";
+BA_ "ASIL_Criticality" SG_ 2348810251 EngOverrideCtrlMode_SPN695 2;
+BA_ "SLOT" SG_ 2565865488 ActRetPercTorq_SPN520 "SAEpc05";
+BA_ "SLOT" SG_ 2565865488 ActlMaxAvRetPerTorq_SPN1717 "SAEpc05";
+BA_ "GenSigStartValue" SG_ 2364539994 EngDemandPercentTq_SPN2432 125;
+BA_ "SLOT" SG_ 2364539994 EngSpeed_SPN190 "SAEvr01";
+BA_ "GenSigStartValue" SG_ 2364539994 ActualEngPercentTorque_SPN513 125;
+BA_ "SLOT" SG_ 2364539994 ActualEngPercentTorque_SPN513 "SAEpc05";
+BA_ "GenSigStartValue" SG_ 2364539994 DriversDemandEngPercentTq_SPN512 125;
+BA_ "SLOT" SG_ 2566840154 NominalFrictionPercentTorque "SAEpc05";
+VAL_ 2348810279 EngOverrideCtrlMode_SPN695 3 "SpeedTorqueLimitControl" 2 "TorqueControl" 1 "SpeedControl" 0 "OverrideDisabled" ;
+VAL_ 2348814378 EngOverrideCtrlMode_SPN695 3 "SpeedTorqueLimitControl" 2 "TorqueControl" 1 "SpeedControl" 0 "OverrideDisabled" ;
+VAL_ 2348810400 EngOverrideCtrlMode_SPN695 3 "SpeedTorqueLimitControl" 2 "TorqueControl" 1 "SpeedControl" 0 "OverrideDisabled" ;
+VAL_ 2348810282 EngOverrideCtrlMode_SPN695 3 "SpeedTorqueLimitControl" 2 "TorqueControl" 1 "SpeedControl" 0 "OverrideDisabled" ;
+VAL_ 2566885210 ES_pchgContactorCommand 3 "Not available" 2 "Emergency disconnection" 1 "Close contactor" 0 "Open contactor" ;
+VAL_ 2566885210 DNR_status 4 "Reverse" 2 "Neutral" 1 "Drive" ;
+VAL_ 2566885210 ES_mainContactorCommand 3 "Not available" 2 "Emergency disconnection" 1 "Close contactor" 0 "Open contactor" ;
+VAL_ 2566864167 CoolingTractSysStatus 3 "Not available" 2 "Error(No water/Status Unknown)" 1 "On" 0 "Off" ;
+VAL_ 2566864167 OperationModeReq 1 "EV mode" 0 "No mode (System Off)" ;
+VAL_ 2566889459 ES_mainContactorState 3 "Not available" 2 "Error" 1 "Contacotr Closed" 0 "Contactor Open" ;
+VAL_ 2365538087 ParkingBrakeSwitch 3 "Not available" 2 "Error" 1 "Parking brake switch active" 0 "Parking brake switch passive" ;
+VAL_ 2365538087 HaltBrakeSwitch 3 "Not available" 2 "Error" 1 "Halt brake switch active" 0 "Halt brake switch passive" ;
+VAL_ 2365538087 DNR_selection 4 "Reverse" 2 "Neutral" 1 "Drive" ;
+VAL_ 2365538087 BrakePedalSwitch 3 "Not available" 2 "Error" 1 "Brake pedal is being pressed" 0 "Brake pedal is not being pressed" ;
+VAL_ 2365538087 AcceleratorPedalSwitch 3 "Not available" 2 "Error" 1 "Accelerator pedal pressed" 0 "Accelerator pedal not pressed" ;
+VAL_ 2348814347 EngOverrideCtrlMode_SPN695 3 "SpeedTorqueLimitControl" 2 "TorqueControl" 1 "SpeedControl" 0 "OverrideDisabled" ;
+VAL_ 2348810251 EngOverrideCtrlMode_SPN695 3 "SpeedTorqueLimitControl" 2 "TorqueControl" 1 "SpeedControl" 0 "OverrideDisabled" ;
+
