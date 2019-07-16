@@ -71,6 +71,7 @@ def upload_attachment(filename, data):
         message_id = item["messageId"]
         bucket = item["bucket"]
 
+    # TODO: Upload file to S3 here
     update_status(message_id, "attachment_uploaded", ddb_table)
 
     print(json_data)
