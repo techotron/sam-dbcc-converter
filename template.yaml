@@ -155,7 +155,7 @@ Resources:
            - Effect: Allow
              Action:
                - s3:*
-             Resource: !GetAtt dbcConverterBucket.Arn
+             Resource: "*"
       Events:
         DdbEvent:
           Type: DynamoDB
@@ -238,24 +238,24 @@ Resources:
             Service:
             - ses.amazonaws.com
 
-  ReceiptRuleSet:
-    Type: AWS::SES::ReceiptRuleSet
-    Properties:
-      RuleSetName: !Ref ReceiptRuleSetName
-
-  mailToS3Rule:
-    Type: AWS::SES::ReceiptRule
-    Properties:
-      RuleSetName: !Ref ReceiptRuleSetName
-      Rule:
-        Name: !Ref ReceiptRuleName
-        Enabled: true
-        ScanEnabled: true
-        Actions:
-        - S3Action:
-            BucketName: !Ref dbcConverterBucket
-            ObjectKeyPrefix: "in"
-    DependsOn: ReceiptRuleSet
+#  ReceiptRuleSet:
+#    Type: AWS::SES::ReceiptRuleSet
+#    Properties:
+#      RuleSetName: !Ref ReceiptRuleSetName
+#
+#  mailToS3Rule:
+#    Type: AWS::SES::ReceiptRule
+#    Properties:
+#      RuleSetName: !Ref ReceiptRuleSetName
+#      Rule:
+#        Name: !Ref ReceiptRuleName
+#        Enabled: true
+#        ScanEnabled: true
+#        Actions:
+#        - S3Action:
+#            BucketName: !Ref dbcConverterBucket
+#            ObjectKeyPrefix: "in"
+#    DependsOn: ReceiptRuleSet
 
 Outputs:
   ApplicationApi:
