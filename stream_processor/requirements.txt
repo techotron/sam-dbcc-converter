@@ -1,2 +1,2 @@
 boto3
-eml-parser=1.11.2
+eml-parser==1.11

@@ -4,6 +4,7 @@ import eml_parser
 import datetime
 import base64
 import os
+import pip
 
 
 def extract_stream(event):
@@ -31,7 +32,7 @@ def download_message(stream_data):
     for item in json_data:
         messageId = item["messageId"]
         s3.meta.client.download_file(item["bucket"], item["messageKey"], '/tmp/' + messageId + '.eml')
-    return '/tmp/' + messageId + '.eml'
+    return 'EDDDDYYYY   - /tmp/' + messageId + '.eml'
 
 
 def extract_message(file):
@@ -72,10 +73,16 @@ def upload_attachment(filename, data):
         bucket = item["bucket"]
 
     # TODO: Upload file to S3 here
+    # client = boto3.client('s3')
+    # response = client.put_object(
+    #     Bucket=bucket,
+    #     Key="/attachments/%s" % message_id
+    # )
     update_status(message_id, "attachment_uploaded", ddb_table)
 
     print(json_data)
     print(message_id)
+    # print(response)
 
 
 def update_status(messageId, status_message, table_name):
@@ -96,6 +103,7 @@ def update_status(messageId, status_message, table_name):
 
 
 def main(event, context):
+    pip.main(['uninstall', 'typing'])
     data = extract_stream(event)
 
     email_file = download_message(data)

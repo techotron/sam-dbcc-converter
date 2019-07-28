@@ -155,7 +155,7 @@ Resources:
            - Effect: Allow
              Action:
                - s3:*
-             Resource: !Ref dbcConverterBucket
+             Resource: !GetAtt dbcConverterBucket.Arn
       Events:
         DdbEvent:
           Type: DynamoDB
