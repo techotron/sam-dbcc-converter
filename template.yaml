@@ -141,6 +141,10 @@ Resources:
               Action:
                 - dynamodb:*
               Resource: !GetAtt dbccDynamoDb.Arn
+            - Effect: Allow
+              Action:
+                - s3:*
+              Resource: "*"
       Events:
         SqsEvent:
           Type: SQS

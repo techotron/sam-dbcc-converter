@@ -50,7 +50,7 @@ Resources:
   AppConverterFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/71896a409a9749187716aa3082b6db74
+      CodeUri: s3://snowco-sam-eu-west-1/359ef6076276a87ed2b73eea5ea08305
       DeploymentPreference:
         Type: AllAtOnce
       Events:
@@ -70,12 +70,16 @@ Resources:
             Fn::GetAtt:
             - dbccDynamoDb
             - Arn
+        - Action:
+          - s3:*
+          Effect: Allow
+          Resource: '*'
         Version: '2012-10-17'
     Type: AWS::Serverless::Function
   AppProcessorFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/fa8be34db647b9cb456737695015a0c7
+      CodeUri: s3://snowco-sam-eu-west-1/921034832b114570e1d7b910a97153bb
       DeploymentPreference:
         Type: AllAtOnce
       Events:
@@ -100,7 +104,7 @@ Resources:
   AppVersionFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/60aa28ae2c4cf81d9176abd8fd4a7dc9
+      CodeUri: s3://snowco-sam-eu-west-1/7fea3cef8a669f6e6039723f33fe1caa
       DeploymentPreference:
         Hooks:
           PostTraffic:
@@ -120,7 +124,7 @@ Resources:
     Type: AWS::Serverless::Function
   AppVersionPostTrafficHookFunction:
     Properties:
-      CodeUri: s3://snowco-sam-eu-west-1/a42ff6a84cb6e0773d215c5f6e365dbe
+      CodeUri: s3://snowco-sam-eu-west-1/452a188b14c0cc39c99876bcc38ada62
       DeploymentPreference:
         Enabled: false
       FunctionName: CodeDeployHook_postTrafficHook
@@ -142,7 +146,7 @@ Resources:
     Type: AWS::Serverless::Function
   AppVersionPreTrafficHookFunction:
     Properties:
-      CodeUri: s3://snowco-sam-eu-west-1/a42ff6a84cb6e0773d215c5f6e365dbe
+      CodeUri: s3://snowco-sam-eu-west-1/7fea3cef8a669f6e6039723f33fe1caa
       DeploymentPreference:
         Enabled: false
       Environment:
@@ -175,7 +179,7 @@ Resources:
   StreamProcessorFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/9ec0ebd9b376a94cabe1bad7a8ba1b18
+      CodeUri: s3://snowco-sam-eu-west-1/c50d6d24ff5e872df3581b62c57c7dd6
       DeploymentPreference:
         Type: AllAtOnce
       Events:

@@ -93,6 +93,7 @@ def upload_attachment(filename, data):
         }
         response.append(s3_object)
 
+    print(json.dumps(response))
     return json.dumps(response)
 
 
@@ -117,13 +118,12 @@ def send_sqs_message(body):
     sqs_queue_url = os.getenv("SQS_CONVERTER_QUEUE")
     sqs = boto3.client('sqs')
 
-    for item in body:
-        response = sqs.send_message(
-            QueueUrl=sqs_queue_url,
-            MessageAttributes={},
-            MessageBody=item
-        )
-        print(item)
+    response = sqs.send_message(
+        QueueUrl=sqs_queue_url,
+        MessageAttributes={},
+        MessageBody=body
+    )
+    print(body)
 
 
 def main(event, context):
