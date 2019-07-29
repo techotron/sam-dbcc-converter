@@ -37,7 +37,10 @@ def download_message(stream_data):
     json_data = json.loads(stream_data)
     for item in json_data:
         messageId = item["messageId"]
-        s3.meta.client.download_file(item["bucket"], item["messageKey"], '/tmp/' + messageId + '.eml')
+        try:
+            s3.meta.client.download_file(item["bucket"], item["messageKey"], '/tmp/' + messageId + '.eml')
+        except:
+            print("Could not download s://%s/%s" % (item["bucket"], item["messageKey"]))
 
     return '/tmp/' + messageId + '.eml'
 
@@ -71,7 +74,7 @@ def extract_message(file):
             email_attachment_file_name = fileName
 
     messageId = file.split("/")[2].replace(".eml", "")
-    add_email_details(messageId, email_from_address)
+    add_email_details(messageId, email_from_address, email_attachment_file_name)
 
     # Comment out to prevent stream update loop
     # update_status(messageId, "extracted_attachment", ddb_table)
@@ -120,7 +123,7 @@ def update_status(messageId, status_message, table_name):
     )
 
 
-def add_email_details(messageId, email_address):
+def add_email_details(messageId, email_address, subject, attachment_name):
     ddb_table = os.getenv("DDB_TABLE")
     client = boto3.client('dynamodb')
     item_get = client.get_item(
@@ -131,23 +134,14 @@ def add_email_details(messageId, email_address):
     )
 
     item_get["Item"]["status"]["S"] = "processing"
+    item_get["Item"]["emailAddress"]["S"] = email_address
+    item_get["Item"]["subject"]["S"] = subject
+    item_get["Item"]["attachmentName"]["S"] = attachment_name
 
-    new_item = {
-        'emailaddress': {"S": email_address}
-    }
-
-    updated_item = {item_get, new_item}
-
-    print(updated_item)
-    print(updated_item["Item"])
-
-    # item_get["Item"]["emailaddress"]["S"] = email_address
-    # item_get["Item"]["status"]["S"] = "processing"
-    #
-    # item_put = client.put_item(
-    #     TableName=table_name,
-    #     Item=item_get["Item"]
-    # )
+    item_put = client.put_item(
+        TableName=table_name,
+        Item=item_get["Item"]
+    )
 
 
 def send_sqs_message(body):
@@ -166,7 +160,7 @@ def main(event, context):
     data = extract_stream(event)
 
     if status_check(data) == "pending":
-
+        print(data)
         email_file = download_message(data)
 
         extracted_attachment = extract_message(email_file)

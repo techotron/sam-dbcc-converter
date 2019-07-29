@@ -22,6 +22,9 @@ def put_item(data, tableName):
                 'bucketName': {"S": item["bucketName"]},
                 'messageKey': {"S": item["messageKey"]},
                 'messageSize': {"S": str(item["messageSize"])},
+                'emailAddress': {"S": "na"},
+                'subject': {"S": "na"},
+                'attachmentName': {"S": "na"},
                 'status': {"S": "pending"}
             }
         )
