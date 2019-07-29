@@ -1,2 +1,6 @@
+import sqs
+
+
 def main(event, context):
-    print(event)
+    message = (sqs.extract_body(event))
+    print(message)

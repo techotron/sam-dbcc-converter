@@ -50,7 +50,7 @@ Resources:
   AppConverterFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/4e5b0b2393dc50d67e20d0388fee8713
+      CodeUri: s3://snowco-sam-eu-west-1/71896a409a9749187716aa3082b6db74
       DeploymentPreference:
         Type: AllAtOnce
       Events:
@@ -75,7 +75,7 @@ Resources:
   AppProcessorFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/91380fb2213701cd9b8d34bdc1394fcc
+      CodeUri: s3://snowco-sam-eu-west-1/fa8be34db647b9cb456737695015a0c7
       DeploymentPreference:
         Type: AllAtOnce
       Events:
@@ -100,7 +100,7 @@ Resources:
   AppVersionFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/5adb824d068dbc2b6ee8970ea1df11fc
+      CodeUri: s3://snowco-sam-eu-west-1/60aa28ae2c4cf81d9176abd8fd4a7dc9
       DeploymentPreference:
         Hooks:
           PostTraffic:
@@ -120,7 +120,7 @@ Resources:
     Type: AWS::Serverless::Function
   AppVersionPostTrafficHookFunction:
     Properties:
-      CodeUri: s3://snowco-sam-eu-west-1/0f20a2653a0c49b3d586baee04631907
+      CodeUri: s3://snowco-sam-eu-west-1/a42ff6a84cb6e0773d215c5f6e365dbe
       DeploymentPreference:
         Enabled: false
       FunctionName: CodeDeployHook_postTrafficHook
@@ -142,7 +142,7 @@ Resources:
     Type: AWS::Serverless::Function
   AppVersionPreTrafficHookFunction:
     Properties:
-      CodeUri: s3://snowco-sam-eu-west-1/0f20a2653a0c49b3d586baee04631907
+      CodeUri: s3://snowco-sam-eu-west-1/a42ff6a84cb6e0773d215c5f6e365dbe
       DeploymentPreference:
         Enabled: false
       Environment:
@@ -175,7 +175,7 @@ Resources:
   StreamProcessorFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/06bde160d2f6e2544ce8bcc8a98525ce
+      CodeUri: s3://snowco-sam-eu-west-1/9ec0ebd9b376a94cabe1bad7a8ba1b18
       DeploymentPreference:
         Type: AllAtOnce
       Events:
@@ -214,7 +214,7 @@ Resources:
           - sqs:*
           Effect: Allow
           Resource:
-            Fn::ImportValue: dbcConverterS3Queue-ARN
+            Fn::ImportValue: dbcConverterQueue-ARN
         Version: '2012-10-17'
     Type: AWS::Serverless::Function
   dbccDynamoDb:

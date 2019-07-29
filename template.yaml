@@ -174,7 +174,7 @@ Resources:
            - Effect: Allow
              Action:
                - sqs:*
-             Resource: !ImportValue dbcConverterS3Queue-ARN
+             Resource: !ImportValue dbcConverterQueue-ARN
       Events:
         DdbEvent:
           Type: DynamoDB
