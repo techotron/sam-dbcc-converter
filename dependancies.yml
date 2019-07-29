@@ -1,0 +1,133 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Description: Serverless Application Model - DBCC Application Dependancies
+
+Parameters:
+  Environment:
+    Description: Name of the environment to deploy to
+    Default: dev
+    Type: String
+
+  AppName:
+    Description: Name of the application
+    Default: sam-dbcc-converter
+    Type: String
+
+  ReceiptRuleSetName:
+    Type: String
+    Default: mail-to-s3
+
+  ReceiptRuleName:
+    Type: String
+    Default: mail-to-s3
+
+Resources:
+  dbcConverterS3Queue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: "dbcConverterS3Queue"
+
+  dbcConverterQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: "dbcConverterQueue"
+
+  dbcConverterS3QueuePolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - "sqs:*"
+            Effect: "Allow"
+            Principal:
+              Service:
+                - "s3.amazonaws.com"
+            Resource:
+              - !GetAtt dbcConverterS3Queue.Arn
+      Queues:
+        - !Ref dbcConverterS3Queue
+
+  dbcConverterBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub '${AppName}-${Environment}-${AWS::Region}'
+      AccessControl: Private
+      NotificationConfiguration:
+        QueueConfigurations:
+          - Queue: !GetAtt dbcConverterS3Queue.Arn
+            Event: "s3:ObjectCreated:*"
+            Filter:
+              S3Key:
+                Rules:
+                  - Name: prefix
+                    Value: in
+
+  dbcConverterBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref dbcConverterBucket
+      PolicyDocument:
+        Statement:
+          - Action:
+              - "s3:PutObject"
+            Effect: "Allow"
+            Resource:
+              Fn::Join:
+                - ""
+                - - "arn:aws:s3:::"
+                  - Ref: dbcConverterBucket
+                  - "/*"
+            Principal:
+              Service:
+                - ses.amazonaws.com
+
+  ReceiptRuleSet:
+    Type: AWS::SES::ReceiptRuleSet
+    Properties:
+      RuleSetName: !Ref ReceiptRuleSetName
+
+  mailToS3Rule:
+    Type: AWS::SES::ReceiptRule
+    Properties:
+      RuleSetName: !Ref ReceiptRuleSetName
+      Rule:
+        Name: !Ref ReceiptRuleName
+        Enabled: true
+        ScanEnabled: true
+        Actions:
+        - S3Action:
+            BucketName: !Ref dbcConverterBucket
+            ObjectKeyPrefix: "in"
+    DependsOn: ReceiptRuleSet
+
+Outputs:
+  dbcConverterS3Queue:
+    Description: S3 SQS Queue for DBC Converter
+    Value: !Ref dbcConverterS3Queue
+    Export:
+      Name: "dbcConverterS3Queue"
+
+  dbcConverterS3QueueArn:
+    Description: ARN of S3 SQS Queue for DBC Converter
+    Value: !GetAtt dbcConverterS3Queue.Arn
+    Export:
+      Name: "dbcConverterS3Queue-ARN"
+
+  dbcConverterQueue:
+    Description: SQS Queue for DBC Converter
+    Value: !Ref dbcConverterQueue
+    Export:
+      Name: "dbcConverterQueue"
+
+  dbcConverterQueueArn:
+    Description: ARN of SQS Queue for DBC Converter
+    Value: !GetAtt dbcConverterQueue.Arn
+    Export:
+      Name: "dbcConverterQueue-ARN"
+
+  dbcConverterBucket:
+    Description: S3 Bucketname for dbc converter
+    Value: !Ref dbcConverterBucket
+    Export:
+      Name: "dbcConverterBucket"

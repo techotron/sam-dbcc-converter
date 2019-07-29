@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 
-Description: Serverless Application Model - Python Application
+Description: Serverless Application Model - DBCC Application
 
 Transform: AWS::Serverless-2016-10-31
 
@@ -20,14 +20,6 @@ Parameters:
     Default: sam-dbcc-converter
     Type: String
 
-  ReceiptRuleSetName:
-    Type: String
-    Default: mail-to-s3
-
-  ReceiptRuleName:
-    Type: String
-    Default: mail-to-s3
-
 Globals:
   Function:
     Timeout: 3
@@ -37,6 +29,7 @@ Globals:
         APP_VERSION: !Ref AppVersion
         APP_NAME: !Ref AppName
         DDB_TABLE: !Sub '${AppName}-${Environment}'
+        SQS_CONVERTER_QUEUE: !ImportValue dbcConverterQueue
 
 Resources:
   ApplicationApi:
@@ -130,7 +123,29 @@ Resources:
         SqsEvent:
           Type: SQS
           Properties:
-            Queue: !GetAtt dbcConverterQueue.Arn
+            Queue: !ImportValue dbcConverterS3Queue-ARN
+            BatchSize: 1
+
+  AppConverterFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: converter/
+      Handler: app.main
+      AutoPublishAlias: live
+      DeploymentPreference:
+        Type: AllAtOnce
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:*
+              Resource: !GetAtt dbccDynamoDb.Arn
+      Events:
+        SqsEvent:
+          Type: SQS
+          Properties:
+            Queue: !ImportValue dbcConverterQueue-ARN
             BatchSize: 1
 
   StreamProcessorFunction:
@@ -155,7 +170,11 @@ Resources:
            - Effect: Allow
              Action:
                - s3:*
-             Resource: !GetAtt dbcConverterBucket.Arn
+             Resource: "*"
+           - Effect: Allow
+             Action:
+               - sqs:*
+             Resource: !ImportValue dbcConverterS3Queue-ARN
       Events:
         DdbEvent:
           Type: DynamoDB
@@ -164,11 +183,6 @@ Resources:
             StartingPosition: LATEST
             BatchSize: 1
             Enabled: true
-
-  dbcConverterQueue:
-    Type: AWS::SQS::Queue
-    Properties:
-      QueueName: "dbcConverterQueue"
 
   dbccDynamoDb:
     Type: AWS::DynamoDB::Table
@@ -188,97 +202,10 @@ Resources:
       StreamSpecification:
         StreamViewType: NEW_IMAGE
 
-  dbcConverterQueuePolicy:
-    Type: AWS::SQS::QueuePolicy
-    Properties:
-      PolicyDocument:
-        Statement:
-        - Action:
-          - "sqs:*"
-          Effect: "Allow"
-          Principal:
-            Service:
-            - "s3.amazonaws.com"
-          Resource:
-            - !GetAtt dbcConverterQueue.Arn
-      Queues:
-        - !Ref dbcConverterQueue
-
-  dbcConverterBucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: !Sub '${AppName}-${Environment}-${AWS::Region}'
-      AccessControl: Private
-      NotificationConfiguration:
-        QueueConfigurations:
-        - Queue: !GetAtt dbcConverterQueue.Arn
-          Event: "s3:ObjectCreated:*"
-          Filter:
-            S3Key:
-              Rules:
-              - Name: prefix
-                Value: in
-
-  dbcConverterBucketPolicy:
-    Type: AWS::S3::BucketPolicy
-    Properties:
-      Bucket: !Ref dbcConverterBucket
-      PolicyDocument:
-        Statement:
-        - Action:
-          - "s3:PutObject"
-          Effect: "Allow"
-          Resource:
-            Fn::Join:
-            - ""
-            - - "arn:aws:s3:::"
-              - Ref: dbcConverterBucket
-              - "/*"
-          Principal:
-            Service:
-            - ses.amazonaws.com
-
-  ReceiptRuleSet:
-    Type: AWS::SES::ReceiptRuleSet
-    Properties:
-      RuleSetName: !Ref ReceiptRuleSetName
-
-  mailToS3Rule:
-    Type: AWS::SES::ReceiptRule
-    Properties:
-      RuleSetName: !Ref ReceiptRuleSetName
-      Rule:
-        Name: !Ref ReceiptRuleName
-        Enabled: true
-        ScanEnabled: true
-        Actions:
-        - S3Action:
-            BucketName: !Ref dbcConverterBucket
-            ObjectKeyPrefix: "in"
-    DependsOn: ReceiptRuleSet
-
 Outputs:
   ApplicationApi:
     Description: "API Gateway endpoint URL for the application"
     Value: !Sub "https://${ApplicationApi}.execute-api.${AWS::Region}.amazonaws.com/${Environment}/"
-
-  dbcConverterQueue:
-    Description: SQS Queue for DBC Converter
-    Value: !Ref dbcConverterQueue
-    Export:
-      Name: "dbcConverterQueue"
-
-  dbcConverterQueueArn:
-    Description: ARN of SQS Queue for DBC Converter
-    Value: !GetAtt dbcConverterQueue.Arn
-    Export:
-      Name: "dbcConverterQueue-ARN"
-
-  dbcConverterBucket:
-    Description: S3 Bucketname for dbc converter
-    Value: !Ref dbcConverterBucket
-    Export:
-      Name: "dbcConverterBucket"
 
   dbccDynamoDbTable:
     Description: DynamoDB Table Name
