@@ -4,6 +4,13 @@ import datetime
 import base64
 import os
 import email
+import sys
+
+
+def status_check(data):
+    json_data = json.loads(data)
+    for item in json_data:
+        return item["status"]
 
 
 def extract_stream(event):
@@ -36,8 +43,6 @@ def download_message(stream_data):
 
 
 def extract_message(file):
-    ddb_table = os.getenv("DDB_TABLE")
-
     def json_serial(obj):
         if isinstance(obj, datetime.datetime):
             serial = obj.isoformat()
@@ -57,7 +62,7 @@ def extract_message(file):
         fileName = part.get_filename()
         if bool(fileName):
             filePath = os.path.join('/tmp/', fileName)
-            if not os.path.isfile(filePath) :
+            if not os.path.isfile(filePath):
                 fp = open(filePath, 'wb')
                 fp.write(part.get_payload(decode=True))
                 fp.close()
@@ -66,6 +71,7 @@ def extract_message(file):
             email_attachment_file_name = fileName
 
     messageId = file.split("/")[2].replace(".eml", "")
+    add_email_details(messageId, email_from_address)
 
     # Comment out to prevent stream update loop
     # update_status(messageId, "extracted_attachment", ddb_table)
@@ -114,6 +120,27 @@ def update_status(messageId, status_message, table_name):
     )
 
 
+def add_email_details(messageId, email_address):
+    ddb_table = os.getenv("DDB_TABLE")
+    client = boto3.client('dynamodb')
+    item_get = client.get_item(
+        TableName=ddb_table,
+        Key={
+            'messageId': {"S": messageId}
+        }
+    )
+
+    print(item_get["Item"])
+
+    # item_get["Item"]["emailaddress"]["S"] = email_address
+    # item_get["Item"]["status"]["S"] = "processing"
+    #
+    # item_put = client.put_item(
+    #     TableName=table_name,
+    #     Item=item_get["Item"]
+    # )
+
+
 def send_sqs_message(body):
     sqs_queue_url = os.getenv("SQS_CONVERTER_QUEUE")
     sqs = boto3.client('sqs')
@@ -129,13 +156,15 @@ def send_sqs_message(body):
 def main(event, context):
     data = extract_stream(event)
 
-    email_file = download_message(data)
+    if status_check(data) == "pending":
 
-    extracted_attachment = extract_message(email_file)
+        email_file = download_message(data)
 
-    uploaded_attachments = upload_attachment(extracted_attachment, data)
+        extracted_attachment = extract_message(email_file)
 
-    send_sqs_message(uploaded_attachments)
+        uploaded_attachments = upload_attachment(extracted_attachment, data)
+
+        send_sqs_message(uploaded_attachments)
 
 
 if __name__ == "__main__":

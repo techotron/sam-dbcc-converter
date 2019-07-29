@@ -22,7 +22,7 @@ Parameters:
 
 Globals:
   Function:
-    Timeout: 3
+    Timeout: 30
     Runtime: python3.7
     Environment:
       Variables:
@@ -30,6 +30,7 @@ Globals:
         APP_NAME: !Ref AppName
         DDB_TABLE: !Sub '${AppName}-${Environment}'
         SQS_CONVERTER_QUEUE: !ImportValue dbcConverterQueue
+        S3_BUCKET_NAME: !ImportValue dbcConverterBucket
 
 Resources:
   ApplicationApi:

@@ -1,22 +1,19 @@
 import sqs
 import os
-# os.environ['PATH']
-# import sys
-# sys.path.insert(0, './bin')
 import canmatrix.convert
 import json
 import boto3
 
 
 def convert_dbc(files):
+    out_files = []
     for file in files:
-        file_name = file.split("/")[-1]
+        file_name = file.split("/")[-1].replace(".dbc", "")
         print(file)
         print(file_name)
         canmatrix.convert.convert(file, '/tmp/' + file_name + '.xlsx')
-        output_files = [f for f in os.listdir('/tmp')]
-        for f in output_files:
-            print(f)
+        out_files.append('/tmp/' + file_name + '.xlsx')
+    return out_files
 
 
 def download_files(files):
@@ -37,13 +34,24 @@ def download_s3_object(message):
     return files
 
 
+def upload_s3_object(files):
+    bucket = os.getenv("S3_BUCKET_NAME")
+    s3 = boto3.resource('s3')
+    for file in files:
+        print("Uploading %s to %s" % (file, 'processed/' + file.split("/")[-1]))
+        s3.Bucket(bucket).upload_file(file, 'processed/' + file.split("/")[-1])
+
+
 def main(event, context):
     message = (sqs.extract_body(event))
 
     files_to_convert = download_s3_object(message)
 
-    convert_dbc(files_to_convert)
+    processed_files = convert_dbc(files_to_convert)
+
+    upload_s3_object(processed_files)
 
 
 if __name__ == "__main__":
     test = [{'messageId': 'a32d7408-48d5-492f-9204-ea206da3b4a0', 'body': '[{"bucketName": "sam-dbcc-converter-dev-eu-west-1", "objectKey": "attachments/e28abd7f-73ef-43c6-8ab7-9b60c465e119.dbc"}]'}]
+    anotherTest = "/tmp/e28abd7f-73ef-43c6-8ab7-9b60c465e119.xlsx"

@@ -1,2 +1,3 @@
 boto3
-git+https://github.com/ebroecker/canmatrix#egg=canmatrix[xls]
+canmatrix
+xlsxwriter

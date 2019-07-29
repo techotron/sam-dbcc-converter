@@ -10,10 +10,12 @@ Globals:
           Ref: AppVersion
         DDB_TABLE:
           Fn::Sub: ${AppName}-${Environment}
+        S3_BUCKET_NAME:
+          Fn::ImportValue: dbcConverterBucket
         SQS_CONVERTER_QUEUE:
           Fn::ImportValue: dbcConverterQueue
     Runtime: python3.7
-    Timeout: 3
+    Timeout: 30
 Outputs:
   ApplicationApi:
     Description: API Gateway endpoint URL for the application
@@ -50,7 +52,7 @@ Resources:
   AppConverterFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/359ef6076276a87ed2b73eea5ea08305
+      CodeUri: s3://snowco-sam-eu-west-1/60f66630804751851192bce9a5546b6d
       DeploymentPreference:
         Type: AllAtOnce
       Events:
@@ -79,7 +81,7 @@ Resources:
   AppProcessorFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/921034832b114570e1d7b910a97153bb
+      CodeUri: s3://snowco-sam-eu-west-1/5f629e1b968c6813d8845294447ff0de
       DeploymentPreference:
         Type: AllAtOnce
       Events:
@@ -104,7 +106,7 @@ Resources:
   AppVersionFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/7fea3cef8a669f6e6039723f33fe1caa
+      CodeUri: s3://snowco-sam-eu-west-1/d3a21961de4e43832bec147b88836448
       DeploymentPreference:
         Hooks:
           PostTraffic:
@@ -124,7 +126,7 @@ Resources:
     Type: AWS::Serverless::Function
   AppVersionPostTrafficHookFunction:
     Properties:
-      CodeUri: s3://snowco-sam-eu-west-1/452a188b14c0cc39c99876bcc38ada62
+      CodeUri: s3://snowco-sam-eu-west-1/ccef74e60cc2ade2518992e6b79c28a8
       DeploymentPreference:
         Enabled: false
       FunctionName: CodeDeployHook_postTrafficHook
@@ -146,7 +148,7 @@ Resources:
     Type: AWS::Serverless::Function
   AppVersionPreTrafficHookFunction:
     Properties:
-      CodeUri: s3://snowco-sam-eu-west-1/7fea3cef8a669f6e6039723f33fe1caa
+      CodeUri: s3://snowco-sam-eu-west-1/d3a21961de4e43832bec147b88836448
       DeploymentPreference:
         Enabled: false
       Environment:
@@ -179,7 +181,7 @@ Resources:
   StreamProcessorFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/c50d6d24ff5e872df3581b62c57c7dd6
+      CodeUri: s3://snowco-sam-eu-west-1/64ab99aba10f8175cba81ff6b0b96ff0
       DeploymentPreference:
         Type: AllAtOnce
       Events:
