@@ -130,7 +130,16 @@ def add_email_details(messageId, email_address):
         }
     )
 
-    print(item_get["Item"])
+    item_get["Item"]["status"]["S"] = "processing"
+
+    new_item = {
+        'emailaddress': {"S": email_address}
+    }
+
+    updated_item = {item_get, new_item}
+
+    print(updated_item)
+    print(updated_item["Item"])
 
     # item_get["Item"]["emailaddress"]["S"] = email_address
     # item_get["Item"]["status"]["S"] = "processing"
