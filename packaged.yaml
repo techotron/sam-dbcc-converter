@@ -10,6 +10,8 @@ Globals:
           Ref: AppVersion
         DDB_TABLE:
           Fn::Sub: ${AppName}-${Environment}
+        SQS_CONVERTER_QUEUE:
+          Fn::ImportValue: dbcConverterQueue
     Runtime: python3.7
     Timeout: 3
 Outputs:
@@ -45,10 +47,10 @@ Parameters:
     Description: Name of the environment to deploy to
     Type: String
 Resources:
-  AppProcessorFunction:
+  AppConverterFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/cfce9de9a8616a187615fa040f0268da
+      CodeUri: s3://snowco-sam-eu-west-1/4e5b0b2393dc50d67e20d0388fee8713
       DeploymentPreference:
         Type: AllAtOnce
       Events:
@@ -70,10 +72,35 @@ Resources:
             - Arn
         Version: '2012-10-17'
     Type: AWS::Serverless::Function
+  AppProcessorFunction:
+    Properties:
+      AutoPublishAlias: live
+      CodeUri: s3://snowco-sam-eu-west-1/91380fb2213701cd9b8d34bdc1394fcc
+      DeploymentPreference:
+        Type: AllAtOnce
+      Events:
+        SqsEvent:
+          Properties:
+            BatchSize: 1
+            Queue:
+              Fn::ImportValue: dbcConverterS3Queue-ARN
+          Type: SQS
+      Handler: app.main
+      Policies:
+      - Statement:
+        - Action:
+          - dynamodb:*
+          Effect: Allow
+          Resource:
+            Fn::GetAtt:
+            - dbccDynamoDb
+            - Arn
+        Version: '2012-10-17'
+    Type: AWS::Serverless::Function
   AppVersionFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/a33107bf05799fda6828ef9d403c2d91
+      CodeUri: s3://snowco-sam-eu-west-1/5adb824d068dbc2b6ee8970ea1df11fc
       DeploymentPreference:
         Hooks:
           PostTraffic:
@@ -93,7 +120,7 @@ Resources:
     Type: AWS::Serverless::Function
   AppVersionPostTrafficHookFunction:
     Properties:
-      CodeUri: s3://snowco-sam-eu-west-1/a33107bf05799fda6828ef9d403c2d91
+      CodeUri: s3://snowco-sam-eu-west-1/0f20a2653a0c49b3d586baee04631907
       DeploymentPreference:
         Enabled: false
       FunctionName: CodeDeployHook_postTrafficHook
@@ -115,7 +142,7 @@ Resources:
     Type: AWS::Serverless::Function
   AppVersionPreTrafficHookFunction:
     Properties:
-      CodeUri: s3://snowco-sam-eu-west-1/a33107bf05799fda6828ef9d403c2d91
+      CodeUri: s3://snowco-sam-eu-west-1/0f20a2653a0c49b3d586baee04631907
       DeploymentPreference:
         Enabled: false
       Environment:
@@ -148,7 +175,7 @@ Resources:
   StreamProcessorFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/0a7d3f723aa1d91aa2b1d6cfbf134d0c
+      CodeUri: s3://snowco-sam-eu-west-1/06bde160d2f6e2544ce8bcc8a98525ce
       DeploymentPreference:
         Type: AllAtOnce
       Events:
@@ -183,6 +210,11 @@ Resources:
           - s3:*
           Effect: Allow
           Resource: '*'
+        - Action:
+          - sqs:*
+          Effect: Allow
+          Resource:
+            Fn::ImportValue: dbcConverterS3Queue-ARN
         Version: '2012-10-17'
     Type: AWS::Serverless::Function
   dbccDynamoDb:

@@ -29,6 +29,7 @@ Globals:
         APP_VERSION: !Ref AppVersion
         APP_NAME: !Ref AppName
         DDB_TABLE: !Sub '${AppName}-${Environment}'
+        SQS_CONVERTER_QUEUE: !ImportValue dbcConverterQueue
 
 Resources:
   ApplicationApi:
@@ -122,6 +123,28 @@ Resources:
         SqsEvent:
           Type: SQS
           Properties:
+            Queue: !ImportValue dbcConverterS3Queue-ARN
+            BatchSize: 1
+
+  AppConverterFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: converter/
+      Handler: app.main
+      AutoPublishAlias: live
+      DeploymentPreference:
+        Type: AllAtOnce
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:*
+              Resource: !GetAtt dbccDynamoDb.Arn
+      Events:
+        SqsEvent:
+          Type: SQS
+          Properties:
             Queue: !ImportValue dbcConverterQueue-ARN
             BatchSize: 1
 
@@ -148,6 +171,10 @@ Resources:
              Action:
                - s3:*
              Resource: "*"
+           - Effect: Allow
+             Action:
+               - sqs:*
+             Resource: !ImportValue dbcConverterS3Queue-ARN
       Events:
         DdbEvent:
           Type: DynamoDB

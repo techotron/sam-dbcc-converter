@@ -30,7 +30,6 @@ def download_message(stream_data):
     json_data = json.loads(stream_data)
     for item in json_data:
         messageId = item["messageId"]
-        print(item)
         s3.meta.client.download_file(item["bucket"], item["messageKey"], '/tmp/' + messageId + '.eml')
 
     return '/tmp/' + messageId + '.eml'
@@ -71,29 +70,30 @@ def extract_message(file):
     # Comment out to prevent stream update loop
     # update_status(messageId, "extracted_attachment", ddb_table)
 
-    return email_attachment_file_name
+    return '/tmp/' + email_attachment_file_name
 
 
 def upload_attachment(filename, data):
+    response = []
     ddb_table = os.getenv("DDB_TABLE")
     json_data = json.loads(data)
     for item in json_data:
         message_id = item["messageId"]
         bucket = item["bucket"]
 
-    client = boto3.client('s3')
-    response = client.put_object(
-        Bucket=bucket,
-        Key="attachments/%s" % message_id,
-        Body=filename
-    )
+        s3 = boto3.resource('s3')
+        dest_key = "attachments/%s.dbc" % message_id
+        s3.Bucket(bucket).upload_file(filename, dest_key)
 
-    # Comment out to prevent stream update loop
-    # update_status(message_id, "attachment_uploaded", ddb_table)
+        # Comment out to prevent stream update loop
+        # update_status(message_id, "attachment_uploaded", ddb_table)
+        s3_object = {
+            "bucketName": bucket,
+            "objectKey": dest_key
+        }
+        response.append(s3_object)
 
-    print(json_data)
-    print(message_id)
-    # print(response)
+    return json.dumps(response)
 
 
 def update_status(messageId, status_message, table_name):
@@ -113,6 +113,19 @@ def update_status(messageId, status_message, table_name):
     )
 
 
+def send_sqs_message(body):
+    sqs_queue_url = os.getenv("SQS_CONVERTER_QUEUE")
+    sqs = boto3.client('sqs')
+
+    for item in body:
+        response = sqs.send_message(
+            QueueUrl=sqs_queue_url,
+            MessageAttributes={},
+            MessageBody=item
+        )
+        print(item)
+
+
 def main(event, context):
     data = extract_stream(event)
 
@@ -120,7 +133,9 @@ def main(event, context):
 
     extracted_attachment = extract_message(email_file)
 
-    upload_attachment(extracted_attachment, data)
+    uploaded_attachments = upload_attachment(extracted_attachment, data)
+
+    send_sqs_message(uploaded_attachments)
 
 
 if __name__ == "__main__":
