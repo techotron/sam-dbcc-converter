@@ -74,7 +74,7 @@ def extract_message(file):
             email_attachment_file_name = fileName
 
     messageId = file.split("/")[2].replace(".eml", "")
-    add_email_details(messageId, email_from_address, email_attachment_file_name)
+    add_email_details(messageId, email_from_address, email_subject, email_attachment_file_name)
 
     # Comment out to prevent stream update loop
     # update_status(messageId, "extracted_attachment", ddb_table)
@@ -139,7 +139,7 @@ def add_email_details(messageId, email_address, subject, attachment_name):
     item_get["Item"]["attachmentName"]["S"] = attachment_name
 
     item_put = client.put_item(
-        TableName=table_name,
+        TableName=ddb_table,
         Item=item_get["Item"]
     )
 

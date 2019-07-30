@@ -52,7 +52,7 @@ Resources:
   AppConverterFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/46c4a43d811bc5a2a2cbe6384b94e6cf
+      CodeUri: s3://snowco-sam-eu-west-1/fda90dd95109a78d515f46264149f9c4
       DeploymentPreference:
         Type: AllAtOnce
       Events:
@@ -81,7 +81,7 @@ Resources:
   AppProcessorFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/09fc1bb70467d3b516455c1035c02f59
+      CodeUri: s3://snowco-sam-eu-west-1/af0e7ab6fffb3d4b91472c0d180a4cb9
       DeploymentPreference:
         Type: AllAtOnce
       Events:
@@ -106,7 +106,7 @@ Resources:
   AppVersionFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/e778ea6025a547d8340ba78f3b29ada5
+      CodeUri: s3://snowco-sam-eu-west-1/8eeadf3a0fbc5c12965476ce77f8f0f8
       DeploymentPreference:
         Hooks:
           PostTraffic:
@@ -126,7 +126,7 @@ Resources:
     Type: AWS::Serverless::Function
   AppVersionPostTrafficHookFunction:
     Properties:
-      CodeUri: s3://snowco-sam-eu-west-1/8a8291cc1ca2974e682385064c9f09c7
+      CodeUri: s3://snowco-sam-eu-west-1/b643e31451716c523f2eb621f94d94fb
       DeploymentPreference:
         Enabled: false
       FunctionName: CodeDeployHook_postTrafficHook
@@ -148,7 +148,7 @@ Resources:
     Type: AWS::Serverless::Function
   AppVersionPreTrafficHookFunction:
     Properties:
-      CodeUri: s3://snowco-sam-eu-west-1/e778ea6025a547d8340ba78f3b29ada5
+      CodeUri: s3://snowco-sam-eu-west-1/8eeadf3a0fbc5c12965476ce77f8f0f8
       DeploymentPreference:
         Enabled: false
       Environment:
@@ -181,7 +181,7 @@ Resources:
   StreamProcessorFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/adf547dd985cf1c084a4c4c67bf74b14
+      CodeUri: s3://snowco-sam-eu-west-1/6321c50a4700f9f3545846139e6c6120
       DeploymentPreference:
         Type: AllAtOnce
       Events:
