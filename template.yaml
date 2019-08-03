@@ -31,6 +31,7 @@ Globals:
         DDB_TABLE: !Sub '${AppName}-${Environment}'
         SQS_CONVERTER_QUEUE: !ImportValue dbcConverterQueue
         S3_BUCKET_NAME: !ImportValue dbcConverterBucket
+        SQS_EMAIL_QUEUE: !ImportValue dbcEmailQueue
 
 Resources:
   ApplicationApi:
@@ -125,6 +126,36 @@ Resources:
           Type: SQS
           Properties:
             Queue: !ImportValue dbcConverterS3Queue-ARN
+            BatchSize: 1
+
+  ReturnEmailFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: email_responder/
+      Handler: app.main
+      AutoPublishAlias: live
+      DeploymentPreference:
+        Type: AllAtOnce
+      Policies:
+       - Version: '2012-10-17'
+         Statement:
+           - Effect: Allow
+             Action:
+               - dynamodb:*
+             Resource: !GetAtt dbccDynamoDb.Arn
+           - Effect: Allow
+             Action:
+               - ses:*
+             Resource: "*"
+           - Effect: Allow
+             Action:
+               - s3:*
+             Resource: "*"
+      Events:
+        SqsEvent:
+          Type: SQS
+          Properties:
+            Queue: !ImportValue dbcEmailQueue-ARN
             BatchSize: 1
 
   AppConverterFunction:

@@ -14,6 +14,8 @@ Globals:
           Fn::ImportValue: dbcConverterBucket
         SQS_CONVERTER_QUEUE:
           Fn::ImportValue: dbcConverterQueue
+        SQS_EMAIL_QUEUE:
+          Fn::ImportValue: dbcEmailQueue
     Runtime: python3.7
     Timeout: 30
 Outputs:
@@ -52,7 +54,7 @@ Resources:
   AppConverterFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/fda90dd95109a78d515f46264149f9c4
+      CodeUri: s3://snowco-sam-eu-west-1/3d0d7a35fc513e4882b0d54560c7b6d7
       DeploymentPreference:
         Type: AllAtOnce
       Events:
@@ -81,7 +83,7 @@ Resources:
   AppProcessorFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/af0e7ab6fffb3d4b91472c0d180a4cb9
+      CodeUri: s3://snowco-sam-eu-west-1/447eae0e821a6c455ef79c99b7798a4a
       DeploymentPreference:
         Type: AllAtOnce
       Events:
@@ -106,7 +108,7 @@ Resources:
   AppVersionFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/8eeadf3a0fbc5c12965476ce77f8f0f8
+      CodeUri: s3://snowco-sam-eu-west-1/cbb47bc2beee7e4797866d2dcd0bdf23
       DeploymentPreference:
         Hooks:
           PostTraffic:
@@ -126,7 +128,7 @@ Resources:
     Type: AWS::Serverless::Function
   AppVersionPostTrafficHookFunction:
     Properties:
-      CodeUri: s3://snowco-sam-eu-west-1/b643e31451716c523f2eb621f94d94fb
+      CodeUri: s3://snowco-sam-eu-west-1/65f17a9906f56909746c88777372a753
       DeploymentPreference:
         Enabled: false
       FunctionName: CodeDeployHook_postTrafficHook
@@ -148,7 +150,7 @@ Resources:
     Type: AWS::Serverless::Function
   AppVersionPreTrafficHookFunction:
     Properties:
-      CodeUri: s3://snowco-sam-eu-west-1/8eeadf3a0fbc5c12965476ce77f8f0f8
+      CodeUri: s3://snowco-sam-eu-west-1/cbb47bc2beee7e4797866d2dcd0bdf23
       DeploymentPreference:
         Enabled: false
       Environment:
@@ -178,10 +180,43 @@ Resources:
       StageName:
         Ref: Environment
     Type: AWS::Serverless::Api
+  ReturnEmailFunction:
+    Properties:
+      AutoPublishAlias: live
+      CodeUri: s3://snowco-sam-eu-west-1/affc3692fc1e67b4c31df767a00c5ea0
+      DeploymentPreference:
+        Type: AllAtOnce
+      Events:
+        SqsEvent:
+          Properties:
+            BatchSize: 1
+            Queue:
+              Fn::ImportValue: dbcEmailQueue-ARN
+          Type: SQS
+      Handler: app.main
+      Policies:
+      - Statement:
+        - Action:
+          - dynamodb:*
+          Effect: Allow
+          Resource:
+            Fn::GetAtt:
+            - dbccDynamoDb
+            - Arn
+        - Action:
+          - ses:*
+          Effect: Allow
+          Resource: '*'
+        - Action:
+          - s3:*
+          Effect: Allow
+          Resource: '*'
+        Version: '2012-10-17'
+    Type: AWS::Serverless::Function
   StreamProcessorFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/6321c50a4700f9f3545846139e6c6120
+      CodeUri: s3://snowco-sam-eu-west-1/f1b73e7aa74362d78b767950a9f8b1e6
       DeploymentPreference:
         Type: AllAtOnce
       Events:

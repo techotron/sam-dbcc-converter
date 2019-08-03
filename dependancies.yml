@@ -32,6 +32,11 @@ Resources:
     Properties:
       QueueName: "dbcConverterQueue"
 
+  dbcEmailQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: "dbcEmailQueue"
+
   dbcConverterS3QueuePolicy:
     Type: AWS::SQS::QueuePolicy
     Properties:
@@ -45,8 +50,10 @@ Resources:
                 - "s3.amazonaws.com"
             Resource:
               - !GetAtt dbcConverterS3Queue.Arn
+              - !GetAtt dbcEmailQueue.Arn
       Queues:
         - !Ref dbcConverterS3Queue
+        - !Ref dbcEmailQueue
 
   dbcConverterBucket:
     Type: AWS::S3::Bucket
@@ -62,6 +69,13 @@ Resources:
                 Rules:
                   - Name: prefix
                     Value: in
+          - Queue: !GetAtt dbcEmailQueue.Arn
+            Event: "s3:ObjectCreated:*"
+            Filter:
+              S3Key:
+                Rules:
+                  - Name: prefix
+                    Value: processed
 
   dbcConverterBucketPolicy:
     Type: AWS::S3::BucketPolicy
@@ -131,3 +145,15 @@ Outputs:
     Value: !Ref dbcConverterBucket
     Export:
       Name: "dbcConverterBucket"
+
+  dbcEmailQueue:
+    Description: Email SQS Queue for DBC Converter
+    Value: !Ref dbcEmailQueue
+    Export:
+      Name: "dbcEmailQueue"
+
+  dbcEmailQueueArn:
+    Description: ARN of Email SQS Queue for DBC Converter
+    Value: !GetAtt dbcEmailQueue.Arn
+    Export:
+      Name: "dbcEmailQueue-ARN"
