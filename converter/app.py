@@ -8,7 +8,7 @@ import boto3
 def convert_dbc(files):
     out_files = []
     for file in files:
-        file_name = file.split("/")[-1].replace(".dbc", "")
+        file_name = file.split("/")[-1].replace(".dbc", "").replace(".DBC", "")
         print(file)
         print(file_name)
         canmatrix.convert.convert(file, '/tmp/' + file_name + '.xlsx')

@@ -65,7 +65,7 @@ def return_email(data):
 
     email_address = item_get["Item"]["emailAddress"]["S"]
     email_subject = item_get["Item"]["subject"]["S"]
-    attachment_name = item_get["Item"]["attachmentName"]["S"].replace(".dbc",".xlsx")
+    attachment_name = item_get["Item"]["attachmentName"]["S"].replace(".dbc", ".xlsx").replace(".DBC",".xlsx")
 
     send_email(email_address, email_subject, '/tmp/' + messageId + '.xlsx', attachment_name)
 
